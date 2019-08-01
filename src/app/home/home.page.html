@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="logout">
-        <p>Logout</p>
+          <ion-icon name="log-out"></ion-icon>
       </div>
     </div>
   </div>
@@ -35,16 +35,21 @@
       <div class="search">
         <ion-searchbar></ion-searchbar>
       </div>
-        <div class="card" *ngFor="let n of items">
-          <div class="image">
-            <img src="../../assets/icon/favicon.png" alt="">
-          </div>
-          <div class="detail">
-            <h3>Room Name</h3>
-          </div>
-          <div class="view">
-            <p>View</p>
-          </div>
+      <div class="addroom">
+        <button> <ion-icon name="add-circle-outline"></ion-icon> Add Room</button>
+      </div>
+        <div class="listscroll">
+            <div class="card" *ngFor="let n of items">
+                <div class="image">
+                  <img src="../../assets/icon/favicon.png" alt="">
+                </div>
+                <div class="detail">
+                  <h3>Room Name</h3>
+                </div>
+                <div class="view">
+                  <p>View</p>
+                </div>
+              </div>
         </div>
     </div>
     <div class="details">
@@ -56,7 +61,7 @@
         <img src="https://thewallpaper.co//wp-content/uploads/2016/10/interior-hotel-room-hd-free-amazing-cool-background-images-mac-windows-10-tablet-1920x1200.jpg" alt="">
       </div>
       <div class="more">
-        <div class="description">
+        <div class="desc">
           <h1>Room Name</h1>
           <p>Guest rooms are air-conditioned and contemporary in style. All rooms have a flat screen TV, semi self catering kitchenettes with tea/coffee making facilities, bar fridge and a microwave.
           </p>
@@ -64,18 +69,22 @@
         <div class="reviews">
           <h1>Reviews</h1>
           <hr>
-          <div class="bubble">
-            <div class="profile">
-              <div class="userimage">
-                <img src="../../assets/icon/favicon.png" alt="">
+          <div class="scroll">
+            <div class="bubble">
+              <div class="profile">
+                <div class="userimage">
+                  <div>
+                    <img src="../../assets/icon/favicon.png" alt="">
+                  </div>
+                </div>
+                <div class="detail">
+                  <h4>Name Surname</h4>
+                  <p><i>27 Jul, 2019</i></p>
+                </div>
               </div>
-              <div class="details">
-                <h4>Name Surname</h4>
-                <p><i>27 Jul, 2019</i></p>
+              <div class="comment">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed ante non odio sodales volutpat. Nullam imperdiet mi non ex eleifend, a mattis massa molestie. Curabitur facilisis sed orci vitae molestie. Nulla eget tincidunt massa. Integer ut ligula sit amet eros tincidunt tincidunt nec a neque. Duis nec aliquam neque. Etiam congue, metus ac vestibulum pretium, sapien eros placerat leo, quis accumsan urna sem sed ex. Ut mattis placerat interdum. In quis lacus at quam pulvinar molestie. Vestibulum purus sem, tempus vitae tempor vel, pretium eu velit. Sed massa tellus, hendrerit nec cursus eget, malesuada vitae lorem. Aenean purus magna, commodo et enim in, volutpat feugiat purus.</p>
               </div>
-            </div>
-            <div class="coment">
-
             </div>
           </div>
         </div>
