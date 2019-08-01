@@ -1,0 +1,14 @@
+.main{
+      display: flex;
+      div{
+            width: 50%;
+      }
+      .left{
+            background: #323268;
+            color: white;
+            width: 40%;
+            height: 100vh;
+            display: grid;
+            align-content: center;
+      }
+}
