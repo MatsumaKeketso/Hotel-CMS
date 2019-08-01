@@ -51,15 +51,32 @@
         <p>Click 'View' to see full details.</p>
       </div> -->
     <div class="content">
-      <div class="image">
+      <div class="roomimage" [ngClass]="{'classname': roominmage}">
         <img src="https://thewallpaper.co//wp-content/uploads/2016/10/interior-hotel-room-hd-free-amazing-cool-background-images-mac-windows-10-tablet-1920x1200.jpg" alt="">
       </div>
       <div class="more">
         <div class="description">
-
+          <h1>Room Name</h1>
+          <p>Guest rooms are air-conditioned and contemporary in style. All rooms have a flat screen TV, semi self catering kitchenettes with tea/coffee making facilities, bar fridge and a microwave.
+          </p>
         </div>
         <div class="reviews">
-          
+          <h1>Reviews</h1>
+          <hr>
+          <div class="bubble">
+            <div class="profile">
+              <div class="userimage">
+                <img src="../../assets/icon/favicon.png" alt="">
+              </div>
+              <div class="details">
+                <h4>Name Surname</h4>
+                <p><i>27 Jul, 2019</i></p>
+              </div>
+            </div>
+            <div class="coment">
+
+            </div>
+          </div>
         </div>
       </div>
     </div>

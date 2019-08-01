@@ -143,13 +143,22 @@
                   width: 90%;
                   height: 90%;
                   margin: auto;
-                  .image{
+                  .roomimage{
                         width: 100%;
                         height: 45%;
+                        border-radius: 5px;
+                        box-shadow: 0px 0px 5px #17171765;
+                        overflow: hidden;
                         img{
                               width: 100%;
                               height: 100%;
                               object-fit: cover;
+                        }
+                  }
+                  .more{
+                        display: flex;
+                        div{
+                              width: 50%;
                         }
                   }
             }
