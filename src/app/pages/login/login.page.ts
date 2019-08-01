@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
       this.authService.loginUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
-            // this.router.navigateByUrl('home');
+             this.router.navigateByUrl('home');
             console.log('Login successful');
             
           });
