@@ -1,14 +1,68 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <div class="header">
+    <div class="hotelname">
+      <h1>Hotel Name</h1>
+    </div>
+    <div class="bookings">
+      <p>Overall Bookings: 56</p>
+    </div>
+    <div class="middle"></div>
+    <div class="right">
+      <div class="button">
+        <button ion-button >Users</button>
+      </div>
+      <div class="button">
+        <button ion-button >Rooms</button>
+      </div>
+      <div class="account">
+        <div class="image">
+          <div>
+            <img src="../../assets/icon/favicon.png" alt="">
+          </div>
+        </div>
+        <div class="name">
+          <p>Name Surname</p>
+        </div>
+      </div>
+      <div class="logout">
+        <p>Logout</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="list">
+      <div class="search">
+        <ion-searchbar></ion-searchbar>
+      </div>
+        <div class="card" *ngFor="let n of items">
+          <div class="image">
+            <img src="../../assets/icon/favicon.png" alt="">
+          </div>
+          <div class="detail">
+            <h3>Room Name</h3>
+          </div>
+          <div class="view">
+            <p>View</p>
+          </div>
+        </div>
+    </div>
+    <div class="details">
+      <!-- <div class="empty">
+        <p>Click 'View' to see full details.</p>
+      </div> -->
+    <div class="content">
+      <div class="image">
+        <img src="https://thewallpaper.co//wp-content/uploads/2016/10/interior-hotel-room-hd-free-amazing-cool-background-images-mac-windows-10-tablet-1920x1200.jpg" alt="">
+      </div>
+      <div class="more">
+        <div class="description">
+
+        </div>
+        <div class="reviews">
+          
+        </div>
+      </div>
+    </div>
+    </div>
   </div>
 </ion-content>
