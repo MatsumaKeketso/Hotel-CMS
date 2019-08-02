@@ -1,6 +1,6 @@
 <ion-content>
   <div class="container">
-    <h1>Add Rooms</h1>
+    <h1>Manage Rooms</h1>
     <div class="formm">
       <ion-item>
         <ion-label position="stacked" id="profile_image" color="primary">Select Room image</ion-label>
@@ -20,10 +20,11 @@
         <ion-textarea [(ngModel)]="room.description" rows="5"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-label position="floating" color="primary" floating>Features</ion-label>
-
-        <ion-input [(ngModel)]="room.features" type="text"></ion-input>
-      </ion-item>
+          <ion-label position="floating">Features</ion-label>
+          <ion-select [(ngModel)]="room.features" value="brown" okText="Okay" multiple="true"   cancelText="Dismiss">
+            <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
+          </ion-select>
+        </ion-item>
       <ion-button (click)="addRoom()" expand="full"> Save Room</ion-button>
       <ion-button (click)="cancel()" color="danger" expand="full"> Cancel</ion-button>
     </div>

@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="name">
-          <p>Name Surname</p>
+          <p>Admin</p>
         </div>
       </div>
       <div class="logout">
@@ -42,6 +42,9 @@
             </ion-button>
       </div>
         <div class="listscroll">
+          <div class="noroom" *ngIf="items.length==0">
+              <p > Click 'Add Rooms' to create a new list</p>
+          </div>
             <div class="card" *ngFor="let n of items">
                 <div class="image">
                   <img src="{{n.image}}" alt="">
@@ -49,8 +52,13 @@
                 <div class="detail">
                   <h3>{{n.name}}</h3>
                 </div>
-                <div class="view" (click)="viewRoom(n) ">
-                  <p>View</p>
+                <div class="view" >
+                  <div class="v" (click)="viewRoom(n) ">
+                    <p>View</p>
+                  </div>
+                  <div class="d" (click)="deleteRoom(n)">
+                    <p>Delete</p>
+                  </div>
                 </div>
               </div>
         </div>
@@ -158,7 +166,7 @@
       </div>
     </div>
   <ion-fab *ngIf="view"  vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
-      <ion-fab-button size="large">
+      <ion-fab-button size="large" (click)="editRoom()">
         <ion-icon name="create" ></ion-icon>
       </ion-fab-button>
     </ion-fab>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RoomService } from '../../services/room/room.service';
 import * as firebase from 'firebase';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, NavParams } from '@ionic/angular';
 
 
 @Component({
@@ -12,6 +12,10 @@ import { AlertController, LoadingController } from '@ionic/angular';
 })
 export class RoomCreatePage implements OnInit {
   storage = firebase.storage().ref();
+  features = [
+    'Mountain view', 'Flat-screen TV ', 'Air conditioning',  'Bath',  'Private bathroom ', 'Free WiFi',
+ 'TV', 'Telephone', 'Satellite Channels ', 'Cable Channels',  'Laptop safe', 'Safety Deposit Box', 'Seating Area', 'Extra Long Beds (> 2 metres)', 'Heating',  'Sofa', 'Hardwood or parquet floors', 'Wardrobe or closet', 'Shower',  'Hairdryer', 'Free toiletries', 'Toilet', 'Bath or Shower', 'Kitchenette', 'Refrigerator',  'Microwave', 'Electric kettle ', 'Wake-up service'
+  ];
   room = {
     image: '',
     name: '',
@@ -19,9 +23,16 @@ export class RoomCreatePage implements OnInit {
     description: null,
     features: []
   };
-  constructor(public loadingCtrl: LoadingController, private roomservice: RoomService, public alertCtrl: AlertController) { }
+  // tslint:disable-next-line: max-line-length
+  constructor(public loadingCtrl: LoadingController, private roomservice: RoomService, public alertCtrl: AlertController, public navParams: NavParams) { }
 
   ngOnInit() {
+    console.log(this.navParams);
+    this.room.image = this.navParams.data.image;
+    this.room.name = this.navParams.data.name;
+    this.room.price = this.navParams.data.price;
+    this.room.description = this.navParams.data.description;
+    this.room.features = this.navParams.data.features;
   }
   changeListener(event): void {
     const i = event.target.files[0];
