@@ -4,7 +4,8 @@ import { FormGroup,Validators, FormBuilder } from '@angular/forms';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/user/auth.service';
 import { Router } from '@angular/router';
- 
+import * as firebase from 'firebase';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -13,7 +14,7 @@ import { Router } from '@angular/router';
 export class LoginPage implements OnInit {
   public loginForm: FormGroup;
   public loading: HTMLIonLoadingElement;
-
+  storage = firebase.storage().ref();
   constructor(
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
@@ -66,4 +67,19 @@ export class LoginPage implements OnInit {
   register(){
     this.router.navigate((['register']));
   }
+  changeListener(event): void {
+     const i = event.target.files[0];
+     console.log(i);
+     let upload = this.storage.child(i.name).put(i);
+     upload.on('state_changed', snapshot => {
+       let progress = (snapshot.bytesTransferred / snapshot.totalBytes)* 100;
+       console.log('upload is: ', progress , '% done.');
+     }, err => {
+     }, () => {
+       upload.snapshot.ref.getDownloadURL().then(dwnURL => {
+         console.log('File avail at: ', dwnURL);
+       });
+     });
+     
+   }
 }

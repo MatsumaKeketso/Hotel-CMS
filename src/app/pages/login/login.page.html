@@ -1,12 +1,12 @@
   <ion-content>
     <div class="main">
         <div class="left">
-            <div class="form">
+            <div class="formm">
                 <p>{{err}}</p>
                 <form [formGroup]="loginForm">
                   <ion-item>
-                    <ion-label position="stacked">Email</ion-label>
-                    <ion-input formControlName="email" type="email" placeholder="Your email address" [class.invalid]="!loginForm.controls['email'].valid &&
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input formControlName="email" type="email" [class.invalid]="!loginForm.controls['email'].valid &&
                     loginForm.controls['email'].touched">
                     </ion-input>
                   </ion-item>
@@ -16,8 +16,8 @@
                   </ion-item>
               
                   <ion-item>
-                    <ion-label position="stacked">Password</ion-label>
-                    <ion-input formControlName="password" type="password" placeholder="Your password"
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input formControlName="password" type="password"
                       [class.invalid]="!loginForm.controls['password'].valid&& loginForm.controls['password'].touched">
                     </ion-input>
                   </ion-item>
@@ -33,10 +33,21 @@
                 <ion-button  (click)="register()" expand="block" fill="clear">
                   Create a new account
                 </ion-button>
+                <ion-item>
+                    <ion-label position="floating" id="profile_image" color="primary" stacked>Select image</ion-label>
+                    <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+                  </ion-item>
             </div>
         </div>
         <div class="right">
-    
+          <div>
+              <h1>Hotel Name</h1>
+              <h4>CMS System</h4>
+          </div>
         </div>
     </div>
+    <div class="shape">
+    </div>
+    <div class="shape1">
+      </div>
   </ion-content>
