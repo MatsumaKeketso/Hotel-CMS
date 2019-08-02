@@ -7,23 +7,24 @@
 <ion-content>
     <ion-item>
         <ion-label position="floating" id="profile_image" color="primary" floating>Select image</ion-label>
-        <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+        <ion-input [(ngModel)="roomImage"]type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
       </ion-item>
       <ion-item>
           <ion-label position="floating"  color="primary" floating>Name</ion-label>
-          <ion-input type="text" ></ion-input>
+          <ion-input  [(ngModel)="roomName"]type="text" ></ion-input>
         </ion-item>
         <ion-item>
             <ion-label position="floating"  color="primary" floating>Price</ion-label>
-            <ion-input type="text"></ion-input>
+            <ion-input  [(ngModel)="roomPrice"]type="number"></ion-input>
           </ion-item>
           <ion-item>
               <ion-label position="floating"  color="primary" floating>Description</ion-label>
-              <ion-input type="text"></ion-input>
+              <ion-input  [(ngModel)="roomDescription"] type="text"></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label position="floating"  color="primary" floating>Features</ion-label>
-                <ion-input type="text" ></ion-input>
+      
+        <ion-input  [(ngModel)="roomFeatures"]type="text" ></ion-input>
               </ion-item>
-              <ion-button> Save Room</ion-button>
+              <ion-button (click)="addRoom(roomImage,roomName,roomPrice,roomDescription,roomFeatures)"> Save Room</ion-button>
 </ion-content>
