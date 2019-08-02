@@ -5,26 +5,30 @@
 </ion-header>
 
 <ion-content>
-    <ion-item>
-        <ion-label position="floating" id="profile_image" color="primary" floating>Select image</ion-label>
-        <ion-input [(ngModel)="roomImage"]type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
-      </ion-item>
-      <ion-item>
-          <ion-label position="floating"  color="primary" floating>Name</ion-label>
-          <ion-input  [(ngModel)="roomName"]type="text" ></ion-input>
-        </ion-item>
+  <div class="container">
+    <div class="formm">
         <ion-item>
-            <ion-label position="floating"  color="primary" floating>Price</ion-label>
-            <ion-input  [(ngModel)="roomPrice"]type="number"></ion-input>
+            <ion-label position="stacked" id="profile_image" color="primary">Select Room image</ion-label>
+            <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
           </ion-item>
           <ion-item>
-              <ion-label position="floating"  color="primary" floating>Description</ion-label>
-              <ion-input  [(ngModel)="roomDescription"] type="text"></ion-input>
-            </ion-item>
-            <ion-item>
-                <ion-label position="floating"  color="primary" floating>Features</ion-label>
-      
-        <ion-input  [(ngModel)="roomFeatures"]type="text" ></ion-input>
-              </ion-item>
-              <ion-button (click)="addRoom(roomImage,roomName,roomPrice,roomDescription,roomFeatures)"> Save Room</ion-button>
+            <ion-label position="floating" color="primary" floating>Name</ion-label>
+            <ion-input [(ngModel)]="room.name" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" color="primary" floating>Price</ion-label>
+            <ion-input [(ngModel)]="room.price" type="number"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" color="primary" floating>Description</ion-label>
+            <ion-input [(ngModel)]="room.description" type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating" color="primary" floating>Features</ion-label>
+        
+            <ion-input [(ngModel)]="room.features" type="text"></ion-input>
+          </ion-item>
+          <ion-button (click)="addRoom()"> Save Room</ion-button>
+    </div>
+  </div>
 </ion-content>

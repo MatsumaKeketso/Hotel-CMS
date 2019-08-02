@@ -45,7 +45,7 @@ export class RegisterPage implements OnInit {
       this.authService.signupUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
-            this.router.navigateByUrl('home');
+            this.router.navigateByUrl('home', { skipLocationChange: true });
           });
         },
         error => {
@@ -60,7 +60,9 @@ export class RegisterPage implements OnInit {
       );
       this.loading = await this.loadingCtrl.create();
       await this.loading.present();
-      
     }
+  }
+  loginuser() {
+    this.router.navigateByUrl('login', { skipLocationChange: true });
   }
 }

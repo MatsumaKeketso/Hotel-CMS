@@ -35,7 +35,7 @@
         <ion-searchbar expand="full"></ion-searchbar>
       </div>
       <div class="addroom">
-          <ion-button expand="full">
+          <ion-button expand="full" (click)="addRoom()">
               Add Room
               <ion-icon slot="end" name="add-circle-outline"></ion-icon>
             </ion-button>
@@ -43,30 +43,31 @@
         <div class="listscroll">
             <div class="card" *ngFor="let n of items">
                 <div class="image">
-                  <img src="../../assets/icon/favicon.png" alt="">
+                  <img src="{{n.image}}" alt="">
                 </div>
                 <div class="detail">
-                  <h3>Room Name</h3>
+                  <h3>{{n.name}}</h3>
                 </div>
-                <div class="view">
+                <div class="view" (click)="viewRoom(n) ">
                   <p>View</p>
                 </div>
               </div>
         </div>
     </div>
     <div class="details">
-      <!-- <div class="empty">
+      <div *ngIf="!room.image" class="empty">
         <p>Click 'View' to see full details.</p>
-      </div> -->
-    <div class="content">
+      </div>
+    <div *ngIf="room.image" class="content">
       <div class="roomimage" [ngClass]="{'classname': roominmage}">
-        <img src="https://thewallpaper.co//wp-content/uploads/2016/10/interior-hotel-room-hd-free-amazing-cool-background-images-mac-windows-10-tablet-1920x1200.jpg" alt="">
+        <img src="{{room.image}}" alt="">
       </div>
       <div class="more">
         <div class="desc">
-          <h1>Room Name</h1>
-          <p>Guest rooms are air-conditioned and contemporary in style. All rooms have a flat screen TV, semi self catering kitchenettes with tea/coffee making facilities, bar fridge and a microwave.
+          <h1>{{room.name}}</h1>
+          <p>{{room.description}}
           </p>
+          <p>{{room.features}}</p>
         </div>
         <div class="reviews">
           <h1>Reviews</h1>

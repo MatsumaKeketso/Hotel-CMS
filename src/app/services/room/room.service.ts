@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
 import 'firebase/auth';
-import { stringify } from 'querystring';
+import { LoadingController, AlertController } from '@ionic/angular';
 
 
 @Injectable({
@@ -9,39 +9,42 @@ import { stringify } from 'querystring';
 })
 export class RoomService {
   db = firebase.firestore();
-  roomInfo;
-  constructor() { 
+  constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
     // firebase.auth().onAuthStateChanged(user =>{
     //   if (user) {
     //     this.db.collection('users').doc(user.uid).set(this.roomInfo);
     //   }
     // })
   }
-  addRoom(
-    roomImage: string,
-    roomName:string,
-    roomPrice: number,
-    roomDescription: string,
-    roomFeatures : string,
-    ): Promise <firebase.firestore.DocumentReference>{
-      return this.roomInfo.add({
-        image: roomImage,
-        name: roomName,
-        price:roomPrice,
-        description:roomDescription,
-        features:roomFeatures
+  async addRoom(room) {
+    const loading = await this.loadingCtrl.create({
+      message: 'Adding Room'
+    });
+    this.db.collection('rooms').doc(room.name).set(room).then(res => {
+        console.log('Room add Response', res);
+        loading.dismiss();
+        this.alertCtrl.create({
+          message: 'Room added'
+        });
+      }).catch(err => {
+        loading.dismiss();
+        this.alertCtrl.create({
+          message: 'Error adding room'
+        });
       });
     }
-    getRoomList():firebase.firestore.CollectionReference{
-      return this.roomInfo;
+    // firebase.firestore.CollectionReference
+    getRoomList() {
+      this.db.collection('rooms').get().then(snapshot => {
+        const rooms = [];
+        snapshot.forEach(doc => {
+          rooms.push(doc.data());
+        });
+        return rooms;
+      });
       }
+      updateRoom(room) {
 
-getRoomDetail(roomId:string): firebase.firestore.DocumentReference{
-  return this.roomInfo.doc(roomId);
+      }
 }
-
-
-
-  }
-  
 
