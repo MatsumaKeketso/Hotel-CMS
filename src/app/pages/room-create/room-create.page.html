@@ -1,34 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Add Room</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <div class="container">
+    <h1>Add Rooms</h1>
     <div class="formm">
-        <ion-item>
-            <ion-label position="stacked" id="profile_image" color="primary">Select Room image</ion-label>
-            <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating" color="primary" floating>Name</ion-label>
-            <ion-input [(ngModel)]="room.name" type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating" color="primary" floating>Price</ion-label>
-            <ion-input [(ngModel)]="room.price" type="number"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating" color="primary" floating>Description</ion-label>
-            <ion-input [(ngModel)]="room.description" type="text"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-label position="floating" color="primary" floating>Features</ion-label>
-        
-            <ion-input [(ngModel)]="room.features" type="text"></ion-input>
-          </ion-item>
-          <ion-button (click)="addRoom()"> Save Room</ion-button>
+      <ion-item>
+        <ion-label position="stacked" id="profile_image" color="primary">Select Room image</ion-label>
+        <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" color="primary" floating>Name</ion-label>
+        <ion-input [(ngModel)]="room.name" type="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" color="primary" floating>Price</ion-label>
+        <ion-input [(ngModel)]="room.price" type="number"></ion-input>
+      </ion-item>
+      <!-- Textarea in an item with a floating label -->
+      <ion-item>
+        <ion-label position="floating">Description</ion-label>
+        <ion-textarea [(ngModel)]="room.description" rows="5"></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating" color="primary" floating>Features</ion-label>
+
+        <ion-input [(ngModel)]="room.features" type="text"></ion-input>
+      </ion-item>
+      <ion-button (click)="addRoom()" expand="full"> Save Room</ion-button>
+      <ion-button (click)="cancel()" color="danger" expand="full"> Cancel</ion-button>
     </div>
   </div>
 </ion-content>

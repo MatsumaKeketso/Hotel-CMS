@@ -14,9 +14,12 @@ import * as firebase from 'firebase';
 export class HomePage {
   db = firebase.firestore();
   classname = 'roominmage';
+  // true = rooms
+  // false = users
+  view = false;
   // tslint:disable-next-line: max-line-length
   items = [];
-  room ={}
+  room ={};
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -29,9 +32,7 @@ export class HomePage {
       });
     });
   }
-    ionViewDidLoad() {
-      
-    }
+    ionViewDidLoad() {}
 logOut(): void {
   this.authService.logoutUser().then(() => {
     this.router.navigateByUrl('login');
@@ -46,6 +47,17 @@ async addRoom() {
 }
 viewRoom(val) {
   this.room = val;
+}
+changeView(val) {
+  
+  if (val) {
+    this.view = true;
+    console.log(this.view);
+  } else {
+    this.view = false;
+    console.log(this.view);
+    
+  }
 }
 }
 
