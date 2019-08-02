@@ -35,7 +35,7 @@
         <ion-searchbar></ion-searchbar>
       </div>
       <div class="addroom">
-        <button> <ion-icon name="add-circle-outline"></ion-icon> Add Room</button>
+        <button (click)="addRoom()"> <ion-icon name="add-circle-outline"></ion-icon> Add Room</button>
       </div>
         <div class="listscroll">
             <div class="card" *ngFor="let n of items">
