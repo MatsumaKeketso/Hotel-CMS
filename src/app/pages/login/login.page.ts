@@ -64,8 +64,7 @@ export class LoginPage implements OnInit {
       );
     }
   }
-  register(){
+  register() {
     this.router.navigate((['register']));
   }
-  
 }

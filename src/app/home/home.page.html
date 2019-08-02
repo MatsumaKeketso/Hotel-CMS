@@ -32,10 +32,13 @@
   <div class="container">
     <div class="list">
       <div class="search">
-        <ion-searchbar></ion-searchbar>
+        <ion-searchbar expand="full"></ion-searchbar>
       </div>
       <div class="addroom">
-        <button (click)="addRoom()"> <ion-icon name="add-circle-outline"></ion-icon> Add Room</button>
+          <ion-button expand="full">
+              Add Room
+              <ion-icon slot="end" name="add-circle-outline"></ion-icon>
+            </ion-button>
       </div>
         <div class="listscroll">
             <div class="card" *ngFor="let n of items">
@@ -91,4 +94,9 @@
     </div>
     </div>
   </div>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
+      <ion-fab-button size="large">
+        <ion-icon name="create" ></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
 </ion-content>
