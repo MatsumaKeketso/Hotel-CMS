@@ -25,5 +25,8 @@ logOut(): void{
   });
 
 }
+addRoom(): void{
+  this.router.navigateByUrl('room-create');
+}
 }
 

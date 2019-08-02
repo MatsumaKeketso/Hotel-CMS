@@ -1,9 +1,29 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>room-create</ion-title>
+    <ion-title>Add Room</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+    <ion-item>
+        <ion-label position="floating" id="profile_image" color="primary" floating>Select image</ion-label>
+        <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+      </ion-item>
+      <ion-item>
+          <ion-label position="floating"  color="primary" floating>Name</ion-label>
+          <ion-input type="text" ></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="floating"  color="primary" floating>Price</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-item>
+              <ion-label position="floating"  color="primary" floating>Description</ion-label>
+              <ion-input type="text"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating"  color="primary" floating>Features</ion-label>
+                <ion-input type="text" ></ion-input>
+              </ion-item>
+              <ion-button> Save Room</ion-button>
 </ion-content>
