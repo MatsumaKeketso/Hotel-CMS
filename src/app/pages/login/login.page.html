@@ -1,8 +1,8 @@
   <ion-content>
     <div class="main">
         <div class="left">
+          <h1>Hello Admin</h1>
             <div class="formm">
-                <p>{{err}}</p>
                 <form [formGroup]="loginForm">
                   <ion-item>
                     <ion-label position="floating">Email</ion-label>
@@ -26,22 +26,25 @@
                     <ion-label>Your password needs more than 6 characters.</ion-label>
                   </ion-item>
               
-                  <ion-button (click)="loginUser(loginForm)" expand="block" [disabled]="!loginForm.valid">
+                  <ion-button (click)="loginUser(loginForm)" expand="block" fill="solid" [disabled]="!loginForm.valid">
                     Log In
                   </ion-button>
                 </form>
-                <ion-button  (click)="register()" expand="block" fill="clear">
+                <ion-button  (click)="register()" expand="block" fill="clear" color="secondary">
                   Create a new account
                 </ion-button>
-                <ion-item>
-                    <ion-label position="floating" id="profile_image" color="primary" stacked>Select image</ion-label>
-                    <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
-                  </ion-item>
+                <div class="checklist">
+                  <div class="ckeck">
+                      <p><ion-icon name="checkmark-circle-outline"></ion-icon> Guest Reviews</p>
+                      <p><ion-icon name="checkmark-circle-outline"></ion-icon> Rooms Management</p>
+                      <p><ion-icon name="checkmark-circle-outline"></ion-icon> Accounts Management</p>
+                  </div>
+                </div>
             </div>
         </div>
         <div class="right">
           <div>
-              <h1>Hotel Name</h1>
+              <h1>Azure Grotto Hotel</h1>
               <h4>CMS System</h4>
           </div>
         </div>
