@@ -21,12 +21,15 @@ export class RoomCreatePage implements OnInit {
     name: '',
     price: null,
     description: null,
-    features: []
+    features: [],
+    lastcreated: ''
   };
   // tslint:disable-next-line: max-line-length
   constructor(public loadingCtrl: LoadingController, private roomservice: RoomService, public alertCtrl: AlertController, public navParams: NavParams) { }
 
   ngOnInit() {
+    const date = new Date();
+    this.room.lastcreated = date.toDateString();
     console.log(this.navParams);
     this.room.image = this.navParams.data.image;
     this.room.name = this.navParams.data.name;

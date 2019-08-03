@@ -74,9 +74,14 @@
       <div class="more">
         <div class="desc">
           <h1>{{room.name}}</h1>
+          <p>R{{room.price}} pp/pn</p>
+          <h3>Description</h3>
           <p>{{room.description}}
           </p>
-          <p>{{room.features}}</p>
+          <h3>Features</h3>
+          <div class="serveces" *ngFor="let s of room.features">
+            {{s}}
+          </div>
         </div>
         <div class="reviews">
           <h1>Reviews</h1>
