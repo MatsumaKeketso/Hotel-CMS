@@ -5,6 +5,7 @@
       <ion-item>
         <ion-label position="stacked" id="profile_image" color="primary">Select Room image</ion-label>
         <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
+        <img src="{{room.image}}" height="80" width="80">
       </ion-item>
       <ion-item>
         <ion-label position="floating" color="primary" floating>Name</ion-label>
