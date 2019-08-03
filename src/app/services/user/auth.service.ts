@@ -12,28 +12,28 @@ export class AuthService {
 
   constructor() { }
   loginUser(
-    email:string,
-    password:string,
-    ):Promise<firebase.auth.UserCredential>{
-      return firebase .auth().signInWithEmailAndPassword(email,password);
+    email: string,
+    password: string,
+    ): Promise<firebase.auth.UserCredential> {
+      return firebase .auth().signInWithEmailAndPassword(email, password);
     }
-    signupUser(email:string,password:string):Promise<any>{
+    signupUser(email: string, password: string): Promise<any> {
       return firebase
       .auth()
-      .createUserWithEmailAndPassword(email,password)
-      .then((newUserCredential:firebase.auth.UserCredential)=>{
+      .createUserWithEmailAndPassword(email, password)
+      .then((newUserCredential: firebase.auth.UserCredential) => {
         firebase
         .firestore()
         .doc(`/userProfile/${newUserCredential.user.uid}`)
         .set({email});
       })
-     .catch(error =>{
+     .catch(error => {
         console.error(error);
         throw new Error(error);
-      })
-     
+      });
+
     }
-    logoutUser():Promise<void>{
+    logoutUser(): Promise<void> {
       return firebase.auth().signOut();
     }
 }
