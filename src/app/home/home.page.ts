@@ -39,7 +39,6 @@ logOut(): void {
   this.authService.logoutUser().then(() => {
     this.router.navigateByUrl('login');
   });
-
 }
 async addRoom() {
   const modal = await this.modal.create({
@@ -51,7 +50,6 @@ viewRoom(val) {
   this.room = val;
 }
 changeView(val) {
-  
   if (val) {
     this.view = true;
     console.log(this.view);
@@ -59,7 +57,6 @@ changeView(val) {
     this.view = false;
     console.log(this.view);
   }
-  
 }
 async editRoom() {
   const modal = await this.modal.create({
@@ -96,9 +93,7 @@ async editRoom() {
       }
     ]
   });
-
   await alert.present();
-  //  ------------------------------------------------------
  }
 }
 
