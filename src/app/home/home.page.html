@@ -9,10 +9,10 @@
     <div class="middle"></div>
     <div class="right">
       <div class="button">
-        <button ion-button (click)="changeView(false)">Users</button>
+        <button ion-button >Users</button>
       </div>
       <div class="button">
-        <button ion-button (click)="changeView(true)" >Rooms</button>
+        <button ion-button >Rooms</button>
       </div>
       <div class="account">
         <div class="image">
@@ -29,8 +29,7 @@
       </div>
     </div>
   </div>
-  <!-- the rooms -->
-  <div *ngIf="view" class="container">
+  <div class="container">
     <div class="list">
       <div class="search">
         <ion-searchbar expand="full"></ion-searchbar>
