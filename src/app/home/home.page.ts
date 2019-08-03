@@ -16,7 +16,7 @@ export class HomePage {
   classname = 'roominmage';
   // true = rooms
   // false = users
-  view = false;
+  view = true;
   // tslint:disable-next-line: max-line-length
   items = [];
   room = {};

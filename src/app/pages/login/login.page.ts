@@ -21,7 +21,6 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
-    
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -33,6 +32,11 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    firebase.auth().onAuthStateChanged(res => {
+      if (res) {
+        this.router.navigateByUrl('home', { skipLocationChange: true });
+      }
+    });
   }
   async loginUser(loginForm: FormGroup): Promise<void> {
     if (!loginForm.valid) {
@@ -47,9 +51,7 @@ export class LoginPage implements OnInit {
       this.authService.loginUser(email, password).then(
         () => {
           this.loading.dismiss().then(() => {
-             this.router.navigateByUrl('home');
-            console.log('Login successful');
-            
+             this.router.navigateByUrl('home', { skipLocationChange: true });
           });
         },
         error => {
