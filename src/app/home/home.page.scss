@@ -161,6 +161,14 @@ ion-fab-button {
                   height: 76.3vh;
                   overflow-y: auto;
                   box-shadow: inset 0px 0px 5px #1717174f;
+                  .noroom{
+                        width: 100%;
+                        height: 100%;
+                        display: grid;
+                        align-content: center;
+                        text-align: center;
+                        color: white;
+                  }
                 .card{
                   width: 90%;
                   margin: 10px auto;
@@ -198,6 +206,9 @@ ion-fab-button {
                         display: grid;
                         align-content: center;
                         text-align: center;
+                        .d{
+                              background: red;
+                        }
                   }
             }  
             }
@@ -206,15 +217,17 @@ ion-fab-button {
       .details{
             background: rgb(252, 252, 252);
             flex-basis: 100%;
-            height: 89vh;
+            height: 90vh;
             display: grid;
-            overflow-y: auto;
+            overflow-y: hidden;
             margin: auto;
-            align-content: center;
+            // align-content: center;
             .empty{
                   text-align: center;
                   opacity: 0.4;
                   height: 100%;
+                  display: grid;
+                  align-content: center;
             }
             .content{
                   width: 90%;

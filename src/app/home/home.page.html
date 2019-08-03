@@ -9,10 +9,10 @@
     <div class="middle"></div>
     <div class="right">
       <div class="button">
-        <button ion-button (click)="changeView(false)">Users</button>
+        <button ion-button >Users</button>
       </div>
       <div class="button">
-        <button ion-button (click)="changeView(true)" >Rooms</button>
+        <button ion-button >Rooms</button>
       </div>
       <div class="account">
         <div class="image">
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="name">
-          <p>Name Surname</p>
+          <p>Admin</p>
         </div>
       </div>
       <div class="logout">
@@ -29,8 +29,7 @@
       </div>
     </div>
   </div>
-  <!-- the rooms -->
-  <div *ngIf="view" class="container">
+  <div class="container">
     <div class="list">
       <div class="search">
         <ion-searchbar expand="full"></ion-searchbar>
@@ -42,6 +41,9 @@
             </ion-button>
       </div>
         <div class="listscroll">
+          <div class="noroom" *ngIf="items.length==0">
+              <p > Click 'Add Rooms' to create a new list</p>
+          </div>
             <div class="card" *ngFor="let n of items">
                 <div class="image">
                   <img src="{{n.image}}" alt="">
@@ -49,8 +51,13 @@
                 <div class="detail">
                   <h3>{{n.name}}</h3>
                 </div>
-                <div class="view" (click)="viewRoom(n) ">
-                  <p>View</p>
+                <div class="view" >
+                  <div class="v" (click)="viewRoom(n) ">
+                    <p>View</p>
+                  </div>
+                  <div class="d" (click)="deleteRoom(n)">
+                    <p>Delete</p>
+                  </div>
                 </div>
               </div>
         </div>
@@ -66,9 +73,14 @@
       <div class="more">
         <div class="desc">
           <h1>{{room.name}}</h1>
+          <p>R{{room.price}} pp/pn</p>
+          <h3>Description</h3>
           <p>{{room.description}}
           </p>
-          <p>{{room.features}}</p>
+          <h3>Features</h3>
+          <div class="serveces" *ngFor="let s of room.features">
+            {{s}}
+          </div>
         </div>
         <div class="reviews">
           <h1>Reviews</h1>
@@ -96,6 +108,10 @@
     </div>
     </div>
   </div>
+<<<<<<< HEAD
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
+      <ion-fab-button size="large">
+=======
   <!-- the users -->
   <div *ngIf="!view" class="container">
       <div class="list">
@@ -158,7 +174,8 @@
       </div>
     </div>
   <ion-fab *ngIf="view"  vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
-      <ion-fab-button size="large">
+      <ion-fab-button size="large" (click)="editRoom()">
+>>>>>>> 7beca0740a0de846081b8eea62ee42e6f7a4a4c1
         <ion-icon name="create" ></ion-icon>
       </ion-fab-button>
     </ion-fab>

@@ -9,28 +9,26 @@ import { LoadingController, AlertController } from '@ionic/angular';
 })
 export class RoomService {
   db = firebase.firestore();
-  constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {
-    // firebase.auth().onAuthStateChanged(user =>{
-    //   if (user) {
-    //     this.db.collection('users').doc(user.uid).set(this.roomInfo);
-    //   }
-    // })
-  }
+  constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) {}
+
   async addRoom(room) {
     const loading = await this.loadingCtrl.create({
       message: 'Adding Room'
     });
-    this.db.collection('rooms').doc(room.name).set(room).then(res => {
+    loading.present();
+    this.db.collection('rooms').doc(room.name).set(room).then(async res => {
         console.log('Room add Response', res);
         loading.dismiss();
-        this.alertCtrl.create({
+        const alert = await this.alertCtrl.create({
           message: 'Room added'
         });
-      }).catch(err => {
+        alert.present();
+      }).catch(async err => {
         loading.dismiss();
-        this.alertCtrl.create({
+        const alert = await this.alertCtrl.create({
           message: 'Error adding room'
         });
+        alert.present();
       });
     }
     // firebase.firestore.CollectionReference
@@ -43,8 +41,18 @@ export class RoomService {
         return rooms;
       });
       }
-      updateRoom(room) {
+  updateRoom(room) {
+    const roomUpdate = this.db.collection('rooms').doc(room.name);
 
-      }
+// Set the "capital" field of the city 'DC'
+    return roomUpdate.update(room)
+.then(() => {
+    console.log('Document successfully updated!');
+})
+.catch(error => {
+    // The document probably doesn't exist.
+    console.error('Error updating document: ', error);
+});
+  }
 }
 
