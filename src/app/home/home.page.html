@@ -4,7 +4,7 @@
       <h1>Hotel  Name</h1>
     </div>
     <div class="bookings">
-      <p>Overall Bookings: 56</p>
+      <p>Overall Bookings</p>
     </div>
     <div class="middle"></div>
     <div class="right">
@@ -32,9 +32,6 @@
   <!-- rooms -->
   <div *ngIf="view" class="container">
     <div class="list">
-      <div class="search">
-        <ion-searchbar expand="full"></ion-searchbar>
-      </div>
       <div class="addroom">
           <ion-button expand="full" (click)="addRoom()">
               Add Room
@@ -68,10 +65,11 @@
         <p>Click 'View' to see full details.</p>
       </div>
     <div *ngIf="room.image" class="content">
-      <div class="roomimage" [ngClass]="{'classname': roominmage}">
-        <img src="{{room.image}}" alt="">
-      </div>
+      
       <div class="more">
+          <div class="roomimage" [ngClass]="{'classname': roominmage}">
+              <img src="{{room.image}}" alt="">
+            </div>
         <div class="desc">
           <h1>{{room.name}}</h1>
           <p>R{{room.price}} pp/pn</p>
@@ -83,47 +81,44 @@
             {{s}}
           </div>
         </div>
-        <div class="reviews">
-          <h1>Reviews</h1>
+      </div>
+      <div class="reviews">
+          <h1>Reviews: {{noRevs}}</h1>
           <hr>
           <div class="scroll">
-            <div class="bubble">
+            <div class="bubble" *ngFor="let r of reviews">
               <div class="profile">
                 <div class="userimage">
                   <div>
-                    <img src="../../assets/icon/favicon.png" alt="">
+                    <img src="{{r.image}}" alt="">
                   </div>
                 </div>
                 <div class="detail">
-                  <h4>Name Surname</h4>
-                  <p><i>27 Jul, 2019</i></p>
+                  <h4>{{r.name}}</h4>
+                  <p><i>{{r.date}}</i></p>
                 </div>
               </div>
               <div class="comment">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed ante non odio sodales volutpat. Nullam imperdiet mi non ex eleifend, a mattis massa molestie. Curabitur facilisis sed orci vitae molestie. Nulla eget tincidunt massa. Integer ut ligula sit amet eros tincidunt tincidunt nec a neque. Duis nec aliquam neque. Etiam congue, metus ac vestibulum pretium, sapien eros placerat leo, quis accumsan urna sem sed ex. Ut mattis placerat interdum. In quis lacus at quam pulvinar molestie. Vestibulum purus sem, tempus vitae tempor vel, pretium eu velit. Sed massa tellus, hendrerit nec cursus eget, malesuada vitae lorem. Aenean purus magna, commodo et enim in, volutpat feugiat purus.</p>
+                <p>{{r.text}}</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
     </div>
     </div>
   </div>
   <!-- the users -->
   <div *ngIf="!view" class="container">
       <div class="list">
-        <div class="search">
-          <ion-searchbar expand="full"></ion-searchbar>
-        </div>
           <div class="listscroll">
-              <div class="card" *ngFor="let n of items">
+              <div class="card" *ngFor="let u of users">
                   <div class="image">
-                    <img src="{{n.image}}" alt="">
+                    <img src="{{u.image}}" alt="">
                   </div>
                   <div class="detail">
-                    <h3>{{n.name}}</h3>
+                    <h3>{{u.name}}</h3>
                   </div>
-                  <div class="view" (click)="viewRoom(n) ">
+                  <div class="view" (click)="viewUser(u) ">
                     <p>View</p>
                   </div>
                 </div>
@@ -134,43 +129,44 @@
           <p>Click 'View' to see full details.</p>
         </div>
       <div *ngIf="room.image" class="content">
-        <div class="roomimage" [ngClass]="{'classname': roominmage}">
-          <img src="{{room.image}}" alt="">
-        </div>
+        
         <div class="more">
+            <div class="roomimage user" [ngClass]="{'classname': roominmage}">
+                <img src="{{user.image}}" alt="">
+              </div>
           <div class="desc">
-            <h1>{{room.name}}</h1>
-            <p>{{room.description}}
-            </p>
-            <p>{{room.features}}</p>
+            <h1>{{user.name}} {{user.surname}}</h1>
+            <p> Email:  {{user.email}} </p>
+            <p>Contacts: {{user.phone}}</p>
           </div>
-          <div class="reviews">
-            <h1>Reviews</h1>
+        </div>
+        <div class="reviews">
+            <h1>Says</h1>
             <hr>
             <div class="scroll">
-              <div class="bubble">
+              <div class="bubble" *ngFor="let ur of userreviews">
                 <div class="profile">
                   <div class="userimage">
                     <div>
-                      <img src="../../assets/icon/favicon.png" alt="">
+                      <img src="{{ur.image}}" alt="">
                     </div>
                   </div>
                   <div class="detail">
-                    <h4>Name Surname</h4>
-                    <p><i>27 Jul, 2019</i></p>
+                    <h4>{{ur.name}}</h4>
+                    <p><i>{{ur.date}}</i></p>
                   </div>
                 </div>
                 <div class="comment">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse sed ante non odio sodales volutpat. Nullam imperdiet mi non ex eleifend, a mattis massa molestie. Curabitur facilisis sed orci vitae molestie. Nulla eget tincidunt massa. Integer ut ligula sit amet eros tincidunt tincidunt nec a neque. Duis nec aliquam neque. Etiam congue, metus ac vestibulum pretium, sapien eros placerat leo, quis accumsan urna sem sed ex. Ut mattis placerat interdum. In quis lacus at quam pulvinar molestie. Vestibulum purus sem, tempus vitae tempor vel, pretium eu velit. Sed massa tellus, hendrerit nec cursus eget, malesuada vitae lorem. Aenean purus magna, commodo et enim in, volutpat feugiat purus.</p>
+                  <p>{{ur.text}}</p>
                 </div>
               </div>
             </div>
           </div>
-        </div>
       </div>
+      
       </div>
     </div>
-  <ion-fab *ngIf="room.image"  vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
+  <ion-fab *ngIf="view"  vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
       <ion-fab-button size="large" (click)="editRoom()">
         <ion-icon name="create" ></ion-icon>
       </ion-fab-button>

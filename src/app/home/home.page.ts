@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/user/auth.service';
 import { Router } from '@angular/router';
 import { ModalController, AlertController } from '@ionic/angular';
@@ -11,7 +11,7 @@ import * as firebase from 'firebase';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
   db = firebase.firestore();
   classname = 'roominmage';
   // true = rooms
@@ -20,6 +20,23 @@ export class HomePage {
   // tslint:disable-next-line: max-line-length
   items = [];
   room = {};
+  reviews = [];
+  noRevs = null;
+  user = {
+    name: '',
+    surname: '',
+    image: '',
+    phone: '',
+    uid: '',
+    bio: '',
+    email: ''
+  };
+  users = [];
+  userreviews = [];
+  searchbar = document.querySelector('ion-searchbar');
+  
+  
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -27,13 +44,47 @@ export class HomePage {
     private roomsService: RoomService,
     public alertCtrl: AlertController
   ) {
-    console.log(this.items);
     
+    console.log(this.items);
     this.db.collection('rooms').get().then(snapshot => {
       snapshot.forEach(doc => {
         this.items.push(doc.data());
       });
+      this.room = this.items[0];
+      this.noRevs = this.items.length;
     });
+  }
+  ngOnInit() {
+    this.getReviews();
+    this.getUsers();
+  }
+  getReviews() {
+    this.db.collection('reviews').get().then(snapshot => {
+      if (snapshot.empty !== true) {
+        console.log('Got Reviews');
+        snapshot.forEach(doc => {
+          this.reviews.push(doc.data());
+        });
+        console.log('Reviews: ', this.reviews);
+        
+      } else {
+        console.log('No reviews');
+      }
+    });
+  }
+  getUsers() {
+    this.db.collection('users').get().then(snapshot => {
+      if (snapshot.empty !== true) {
+        snapshot.forEach(doc => {
+          this.users.push(doc.data());
+        });
+        this.user = this.users[0];
+        console.log('Users: ', this.users);
+        
+      } else {
+        console.log('No users');
+      }
+    })
   }
 logOut(): void {
   this.authService.logoutUser().then(() => {
@@ -48,6 +99,20 @@ async addRoom() {
 }
 viewRoom(val) {
   this.room = val;
+}
+viewUser(user){
+  this.user = user;
+  this.getUserReview();
+}
+getUserReview() {
+  this.userreviews = [];
+  this.db.collection('reviews').where('image', "==", this.user.image).get().then(snapshot => {
+    if (snapshot.empty !== true){
+      snapshot.forEach(doc => {
+        this.userreviews.push(doc.data());
+      });
+    }
+  });
 }
 changeView(val) {
   if (val) {
