@@ -2,11 +2,12 @@
   <div class="container">
     <h1>Manage Rooms</h1>
     <div class="formm">
-      <ion-item>
+      <ion-item *ngIf="!room.image">
         <ion-label position="stacked" id="profile_image" color="primary">Select Room image</ion-label>
         <ion-input type="file" accept="image/*" (change)="changeListener($event)"></ion-input>
-        <img src="{{room.image}}" height="80" width="80">
       </ion-item>
+      <ion-item *ngIf="room.image"><img  src="{{room.image}}" height="80" width="80"></ion-item>
+      
       <ion-item>
         <ion-label position="floating" color="primary" floating>Name</ion-label>
         <ion-input [(ngModel)]="room.name" type="text"></ion-input>
@@ -22,7 +23,7 @@
       </ion-item>
       <ion-item>
           <ion-label position="floating">Features</ion-label>
-          <ion-select [(ngModel)]="room.features" value="brown" okText="Okay" multiple="true"   cancelText="Dismiss">
+          <ion-select [(ngModel)]="room.features" okText="Okay" multiple="true"   cancelText="Dismiss">
             <ion-select-option *ngFor="let n of features">{{n}}</ion-select-option>
           </ion-select>
         </ion-item>

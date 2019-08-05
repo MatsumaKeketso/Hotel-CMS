@@ -11,6 +11,7 @@ import { AlertController, LoadingController, NavParams } from '@ionic/angular';
   styleUrls: ['./room-create.page.scss'],
 })
 export class RoomCreatePage implements OnInit {
+  db = firebase.firestore();
   storage = firebase.storage().ref();
   features = [
     'Mountain view', 'Flat-screen TV ', 'Air conditioning',  'Bath',  'Private bathroom ', 'Free WiFi',
@@ -24,6 +25,7 @@ export class RoomCreatePage implements OnInit {
     features: [],
     lastcreated: ''
   };
+  reviews = [];
   // tslint:disable-next-line: max-line-length
   constructor(public loadingCtrl: LoadingController, private roomservice: RoomService, public alertCtrl: AlertController, public navParams: NavParams) { }
 
