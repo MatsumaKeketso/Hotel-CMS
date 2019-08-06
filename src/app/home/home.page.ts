@@ -146,6 +146,7 @@ async editRoom() {
         text: 'Yes',
         handler: () => {
           this.db.collection('rooms').doc(doc.name).delete().then( async res => {
+            location.reload();
             const alrt = await this.alertCtrl.create({
               message: 'Room deleted'
             });
