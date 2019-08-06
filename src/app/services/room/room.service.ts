@@ -19,6 +19,7 @@ export class RoomService {
     this.db.collection('rooms').doc(room.name).set(room).then(async res => {
         console.log('Room add Response', res);
         loading.dismiss();
+        location.reload();
         const alert = await this.alertCtrl.create({
           message: 'Room added'
         });

@@ -12,12 +12,14 @@ import { FIREBASE_CONFIG } from '../environments/environment';
 import * as firebase from 'firebase';
 import { RoomCreatePage } from './pages/room-create/room-create.page';
 import { FormsModule } from '@angular/forms';
+import { BookingsPage } from './bookings/bookings.page';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 @NgModule({
-  declarations: [AppComponent, RoomCreatePage],
+  declarations: [AppComponent, RoomCreatePage, BookingsPage],
   entryComponents: [
-    RoomCreatePage
+    RoomCreatePage,
+    BookingsPage
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
   providers: [

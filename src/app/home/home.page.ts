@@ -6,6 +6,7 @@ import { RoomService } from '../services/room/room.service';
 import { RoomCreatePage } from '../pages/room-create/room-create.page';
 import * as firebase from 'firebase';
 // import { ModalController } from '@ionic/angular';
+import { BookingsPage } from '../bookings/bookings.page';
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -34,9 +35,9 @@ export class HomePage implements OnInit {
   users = [];
   userreviews = [];
   searchbar = document.querySelector('ion-searchbar');
-  
-  
 
+    overallbookings = 0;
+    bookings  = [];
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -80,7 +81,6 @@ export class HomePage implements OnInit {
         });
         this.user = this.users[0];
         console.log('Users: ', this.users);
-        
       } else {
         console.log('No users');
       }
@@ -160,5 +160,11 @@ async editRoom() {
   });
   await alert.present();
  }
+async presentBookings() {
+  const modal = await this.modal.create({
+    component: BookingsPage
+  });
+  return modal.present();
+}
 }
 

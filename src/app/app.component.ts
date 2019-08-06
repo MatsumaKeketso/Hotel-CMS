@@ -16,19 +16,19 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private router:Router
+    private router: Router
   ) {
     this.initializeApp();
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (!user) {
-        this.router.navigateByUrl("/login");
+        this.router.navigateByUrl('/login');
         unsubscribe();
       } else {
-        this.router.navigateByUrl("/home");
+        this.router.navigateByUrl('/home');
         unsubscribe();
       }
     });
-    
+
   }
 
   initializeApp() {
