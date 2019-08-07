@@ -15,6 +15,7 @@ export class RoomCreatePage implements OnInit {
   storage = firebase.storage().ref();
   features = [
     'Mountain view', 'Flat-screen TV ', 'Air conditioning',  'Bath',  'Private bathroom ', 'Free WiFi',
+ // tslint:disable-next-line: max-line-length
  'TV', 'Telephone', 'Satellite Channels ', 'Cable Channels',  'Laptop safe', 'Safety Deposit Box', 'Seating Area', 'Extra Long Beds (> 2 metres)', 'Heating',  'Sofa', 'Hardwood or parquet floors', 'Wardrobe or closet', 'Shower',  'Hairdryer', 'Free toiletries', 'Toilet', 'Bath or Shower', 'Kitchenette', 'Refrigerator',  'Microwave', 'Electric kettle ', 'Wake-up service'
   ];
   room = {
