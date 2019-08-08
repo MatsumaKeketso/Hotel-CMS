@@ -58,6 +58,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
     this.getReviews();
     this.getUsers();
+    this.getBooking();
   }
   getReviews() {
     this.db.collection('reviews').get().then(snapshot => {
@@ -166,6 +167,16 @@ async presentBookings() {
     component: BookingsPage
   });
   return modal.present();
+}
+getBooking() {
+  this.db.collection('bookings').get().then(snapshot => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach(doc => {
+       this.bookings.push(doc.data());
+     });
+     this.overallbookings = this.bookings.length;
+   }
+  });
 }
 }
 
