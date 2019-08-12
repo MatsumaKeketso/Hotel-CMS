@@ -89,5 +89,15 @@ ChangeView(val){
   this.classesToApply = val;
 
 }
+getBooking() {
+  this.db.collection('bookings').get().then(snapshot => {
+   if (snapshot.empty !== true) {
+     snapshot.forEach(doc => {
+       this.bookings.push(doc.data());
+     });
+     this.overallbookings = this.bookings.length;
+   }
+  });
+}
 }
 
