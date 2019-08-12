@@ -1,0 +1,244 @@
+<ion-content>
+      <div class="container">
+            <div class="left">
+                  <button [ngClass]="{'button': true, 'active': active.info}" class="button"
+                        (click)="onClick(1)">Information</button>
+                  <button [ngClass]="{'button': true, 'active': active.gallery}" (click)="onClick(2)">Image
+                        Gallery</button>
+                  <button [ngClass]="{'button': true, 'active': active.facilities}"
+                        (click)="onClick(3)">Facilities</button>
+                  <button [ngClass]="{'button': true, 'active': active.attractions}"
+                        (click)="onClick(4)">Attractions</button>
+            </div>
+            <div class="info" *ngIf="active.info">
+                  <div class="shortinputs">
+                        <ion-item>
+                              <ion-label position="floating">Hotel Title</ion-label>
+                              <ion-input type="text"></ion-input>
+                        </ion-item>
+                        <ion-item>
+                              <ion-label position="floating">Location</ion-label>
+                              <ion-input type="text"></ion-input>
+                        </ion-item>
+                        <div class="houserules">
+                              <h3>House Rules</h3>
+                              <ion-item>
+                                    <ion-label position="floating">Check-in Time</ion-label>
+                                    <ion-input type="text"></ion-input>
+                              </ion-item>
+                              <ion-item>
+                                    <ion-label position="floating">Check-out Time</ion-label>
+                                    <ion-input type="text"></ion-input>
+                              </ion-item>
+                              <ion-item>
+                                    <ion-label position="floating">Children and Beds</ion-label>
+                                    <ion-textarea rows="19" cols="50"></ion-textarea>
+                              </ion-item>
+                        </div>
+                  </div>
+                  <div class="longinputs">
+                        <ion-item>
+                              <ion-label position="floating">Description</ion-label>
+                              <ion-textarea rows="15" cols="50"></ion-textarea>
+                        </ion-item>
+                        <ion-item>
+                              <ion-label position="floating">Fine print</ion-label>
+                              <ion-textarea rows="15" cols="50"></ion-textarea>
+                        </ion-item>
+                        <ion-button>
+                              Click me
+                        </ion-button>
+                  </div>
+            </div>
+            <div class="gallery" *ngIf="active.gallery">
+                  <div class="header">
+                        <ion-item>
+                              <ion-input type="file" accept="image/*" multiple></ion-input>
+                        </ion-item>
+                  </div>
+                  <div class="g-images">
+                        <div class="image">
+                              <div class="remove">
+                                    <div class="r-header">
+                                          <h1>Image title</h1>
+                                          <ion-button color="light" fill="outline">
+                                                Remove Image
+                                          </ion-button>
+                                    </div>
+                              </div>
+                              <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg"
+                                    alt="">
+                        </div>
+                  </div>
+            </div>
+            <div class="facilities" *ngIf="active.facilities">
+                  <div class="one">
+                        <div>
+                              <h1>Outdoors</h1>
+                              <ion-item>
+
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Internet</h1>
+                              <ion-item>
+
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>General</h1>
+                              <ion-item>
+
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                  </div>
+                  <div class="one">
+                        <div>
+                              <h1>Pets</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Parking</h1>
+                              <ion-item>
+
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Languages spoken</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                  </div>
+                  <div class="one">
+                        <div>
+                              <h1>Activities</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Transport</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Cleaning services</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                  </div>
+                  <div class="one">
+                        <div>
+                              <h1>Food & Drink</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Reception services</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                        <div>
+                              <h1>Business facilities</h1>
+                              <ion-item>
+                                    <ion-select multiple="true" placeholder="Select Options">
+                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
+                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    </ion-select>
+                              </ion-item>
+                        </div>
+                  </div>
+                  <div class="one">
+                        <ion-button>
+                              Save
+                        </ion-button>
+                  </div>
+            </div>
+            <div class="attractions" *ngIf="active.attractions">
+                  <div class="fom">
+                        <div>
+                              <ion-item>
+                                    <ion-input type="file" accept="image/*" multiple="false"></ion-input>
+                              </ion-item>
+                              <ion-item>
+                                    <ion-label position="floating">Attraction Name</ion-label>
+                                    <ion-input type="text"></ion-input>
+                              </ion-item>
+                              <ion-item>
+                                    <ion-label position="floating">Distance from Hotel</ion-label>
+                                    <ion-input type="text"></ion-input>
+                              </ion-item>
+                              <ion-item>
+                                    <ion-label position="floating">Description</ion-label>
+                                    <ion-textarea rows="22" cols="50"></ion-textarea>
+                              </ion-item>
+                              <ion-button>
+                                    <ion-icon slot="start" name="add"></ion-icon>
+                                    Save
+                              </ion-button>
+                        </div>
+                  </div>
+                  <div class="f-disp">
+                        <div class="a-card">
+                              <div class="image">
+                                    <img src="../../assets/office-vector.png">
+                              </div>
+                              <div class="details">
+                                          <h1>Victoria & Alfred Waterfront</h1>
+                                          <h4>3.8 km</h4>
+                                          <p>Fishing boats and ocean liners cruise by the fabulous shops and restaurants that make this harbour Cape Town’s central shopping hub.</p>
+                              </div>
+                              <div class="remove">
+                                    <ion-fab-button color="danger">
+                                          <ion-icon name="trash"></ion-icon>
+                                    </ion-fab-button>
+                              </div>
+                        </div>
+                  </div>
+            </div>
+      </div>
+</ion-content>

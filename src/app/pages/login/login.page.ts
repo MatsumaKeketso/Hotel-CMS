@@ -12,6 +12,7 @@ import * as firebase from 'firebase';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  db = firebase.firestore();
   public loginForm: FormGroup;
   public loading: HTMLIonLoadingElement;
   storage = firebase.storage().ref();
@@ -38,18 +39,12 @@ export class LoginPage implements OnInit {
       }
     });
   }
-  async loginUser(loginForm: FormGroup): Promise<void> {
-    if (!loginForm.valid) {
-      console.log('Form is not valid yet, current value:', loginForm.value);
-    } else {
+  async loginAdmin(loginForm): Promise<void> {
+
       this.loading = await this.loadingCtrl.create();
       await this.loading.present();
 
-      const email = loginForm.value.email;
-      const password = loginForm.value.password;
-
-      this.authService.loginUser(email, password).then(
-        () => {
+      firebase.auth().signInWithEmailAndPassword(loginForm.email, loginForm.password).then(user => {
           this.loading.dismiss().then(() => {
              this.router.navigateByUrl('home', { skipLocationChange: true });
           });
@@ -64,7 +59,12 @@ export class LoginPage implements OnInit {
           });
         }
       );
-    }
+  }
+  forgotpassword(email) {
+    firebase.auth().sendPasswordResetEmail(email).then(res => {
+      console.log(res);
+      
+    });
   }
   register() {
     this.router.navigate((['register']));

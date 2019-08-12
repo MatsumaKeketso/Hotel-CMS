@@ -1,178 +1,69 @@
 <ion-content>
   <div class="header">
-    <div class="hotelname">
-      <h1>Hotel  Name</h1>
-    </div>
-    <div class="bookings">
+    <div class="hoteltitle">
+      <img src="../../assets/icon.png" alt="">
       
     </div>
-    <div class="middle"></div>
-    <div class="right">
-      <div class="button">
-        <button ion-button (click)="changeView(true)" >Rooms</button>
+    <div class="hotel">
+        <p>Azure Grotto</p>
+    </div>
+    <div class="profile">
+      <div class="name">
+        <p>Profile Name</p>
       </div>
-      <div class="button">
-        <button ion-button (click)="changeView(false)" >Users</button>
-        
-      </div>
-      <div class="button">
-        <button ion-button (click)="presentBookings()" >Bookings</button>
-      </div>
-      <div class="account">
+      <div class="actualprof">
         <div class="image">
-          <div>
-            <img src="../../assets/icon/favicon.png" alt="">
-          </div>
+          <img src="../../assets/office-vector.png" alt="">
         </div>
-        <div class="name">
-          <p>Admin</p>
-        </div>
-      </div>
-      <div class="logout">
-        <ion-icon (click)="logOut()" name="log-out"></ion-icon>
+        <p>Signout</p>
       </div>
     </div>
   </div>
-  <!-- rooms -->
-  <div *ngIf="view" class="container">
-    <div class="list">
-      <div class="addroom">
-          <ion-button expand="full" (click)="addRoom()">
-              Add Room
-              <ion-icon slot="end" name="add-circle-outline"></ion-icon>
-            </ion-button>
-      </div>
-        <div class="listscroll">
-          <div class="noroom" *ngIf="items.length==0">
-              <p > Click 'Add Rooms' to create a new list</p>
-          </div>
-            <div class="card" *ngFor="let n of items">
-                <div class="image">
-                  <img src="{{n.image}}" alt="">
-                </div>
-                <div class="detail">
-                  <h3>{{n.name}}</h3>
-                </div>
-                <div class="view">
-                  <div class="v" (click)="viewRoom(n) ">
-                    <p>View</p>
-                  </div>
-                  <div class="d" (click)="deleteRoom(n)">
-                    <p>Delete</p>
-                  </div>
-                </div>
-              </div>
-        </div>
+  <div class="contain">
+    <div *ngIf="homeappear" class="title">
+      <p>Home</p>
     </div>
-    <div class="details">
-      <div *ngIf="!room.image" class="empty">
-        <p>Click 'View' to see full details.</p>
+      <div [class]='classesToApply'>
+        <div  [ngClass]="{'o-badge': true, 'active': active.master}" (click)="topage('hotelmaster', 'links-move')">
+          <div class="o-badge-image master">
+            <img src="../../assets/icon/hotel-master.png">
+          </div>
+          <div class="o-badge-label">
+            <p>Hotel master</p>
+          </div>
+        </div>
+        <div [ngClass]="{'o-badge': true, 'active': active.accommodation}" (click)="topage('accommodation', 'links-move')">
+            <div class="o-badge-image accommodation">
+              <img src="../../assets/icon/accommodation.png">
+            </div>
+            <div class="o-badge-label">
+              <p>Accommodation</p>
+            </div>
+          </div>
+          <div [ngClass]="{'o-badge': true, 'active': active.bookings}" (click)="topage('bookings', 'links-move')">
+              <div class="o-badge-image feedback">
+                <img src="../../assets/icon/feedback.png">
+              </div>
+              <div class="o-badge-label">
+                <p>Feedback</p>
+              </div>
+            </div>
       </div>
-    <div *ngIf="room.image" class="content">
+      <div [ngClass]="{'d-active': dActive.accommodation, 'd-notactive': !dActive.accommodation}">
+        <app-accommodation *ngIf="page=='accommodation'"></app-accommodation>
+      </div>
+      <div [ngClass]="{'d-active': dActive.feedback, 'd-notactive': !dActive.feedback}">
+        <app-bookings *ngIf="page=='bookings'"></app-bookings>
+      </div>
       
-      <div class="more">
-          <div class="roomimage" [ngClass]="{'classname': roominmage}">
-              <img src="{{room.image}}" alt="">
-            </div>
-        <div class="desc">
-          <h1>{{room.name}}</h1>
-          <p>R{{room.price}} pp/pn</p>
-          <h3>Description</h3>
-          <p>{{room.description}}
-          </p>
-          <h3>Features</h3>
-          <div class="serveces" *ngFor="let s of room.features">
-            {{s}}
-          </div>
-        </div>
+      <div [ngClass]="{'d-active': dActive.hotelmaster, 'd-notactive': !dActive.hotelmaster}">
+        <app-hotelmaster *ngIf="page=='hotelmaster'"></app-hotelmaster>
       </div>
-      <div class="reviews">
-          <h1>Reviews: {{noRevs}}</h1>
-          <hr>
-          <div class="scroll">
-            <div class="bubble" *ngFor="let r of reviews">
-              <div class="profile">
-                <div class="userimage">
-                  <div>
-                    <img src="{{r.image}}" alt="">
-                  </div>
-                </div>
-                <div class="detail">
-                  <h4>{{r.name}}</h4>
-                  <p><i>{{r.date}}</i></p>
-                </div>
-              </div>
-              <div class="comment">
-                <p>{{r.text}}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-    </div>
+  </div>
+  <div class="footer">
+    <div>
+        <p>@ 2019 Hotel CMS Admin. All Right Reserved</p>
     </div>
   </div>
-  <!-- the users -->
-  <div *ngIf="!view" class="container">
-      <div class="list">
-          <div class="listscroll">
-              <div class="card" *ngFor="let u of users">
-                  <div class="image">
-                    <img src="{{u.image}}" alt="">
-                  </div>
-                  <div class="detail">
-                    <h3>{{u.name}}</h3>
-                  </div>
-                  <div class="view" (click)="viewUser(u) ">
-                    <p>View</p>
-                  </div>
-                </div>
-          </div>
-      </div>
-      <div class="details">
-        <div *ngIf="!room.image" class="empty">
-          <p>Click 'View' to see full details.</p>
-        </div>
-      <div *ngIf="room.image" class="content">
-        
-        <div class="more">
-            <div class="roomimage user" [ngClass]="{'classname': roominmage}">
-                <img src="{{user.image}}" alt="">
-              </div>
-          <div class="desc">
-            <h1>{{user.name}} {{user.surname}}</h1>
-            <p> Email:  {{user.email}} </p>
-            <p>Contacts: {{user.phone}}</p>
-          </div>
-        </div>
-        <div class="reviews">
-            <h1>Says</h1>
-            <hr>
-            <div class="scroll">
-              <div class="bubble" *ngFor="let ur of userreviews">
-                <div class="profile">
-                  <div class="userimage">
-                    <div>
-                      <img src="{{ur.image}}" alt="">
-                    </div>
-                  </div>
-                  <div class="detail">
-                    <h4>{{ur.name}}</h4>
-                    <p><i>{{ur.date}}</i></p>
-                  </div>
-                </div>
-                <div class="comment">
-                  <p>{{ur.text}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-      </div>
-      
-      </div>
-    </div>
-  <ion-fab *ngIf="view"  vertical="bottom" horizontal="end" slot="fixed" size="large" title="Edit Room">
-      <ion-fab-button size="large" (click)="editRoom()">
-        <ion-icon name="create" ></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  
 </ion-content>
