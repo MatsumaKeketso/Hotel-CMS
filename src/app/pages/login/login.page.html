@@ -2,7 +2,7 @@
     <div class="main">
       <div class="form">
         <div class="image">
-          <img src="../../../assets/icon.png" alt="">
+          <img src="../../../assets/icon.png" >
           <p>Azure Grotto</p>
         </div>
         <div>
@@ -15,8 +15,10 @@
                         <ion-label position="floating">Password</ion-label>
                         <ion-input type="password" ngModel name="password"></ion-input>
                       </ion-item>
-                      <div class="forgotpassword">
-                        <p>Forgot Password?</p>
+                      <div class="forgotpassword" >
+                       <ion-button color="light" fill="clear" (click)="register()">
+                         Reset Password?
+                       </ion-button>
                       </div>
                       <div class="login">
                           <button>Login</button>

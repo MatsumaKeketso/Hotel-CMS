@@ -10,7 +10,9 @@ const routes: Routes = [
   { path: 'register', loadChildren: './pages/register/register.module#RegisterPageModule' },
   { path: 'bookings', loadChildren: './bookings/bookings.module#BookingsPageModule' },
   { path: 'hotelmaster', loadChildren: './hotelmaster/hotelmaster.module#HotelmasterPageModule' },
-  { path: 'accommodation', loadChildren: './accommodation/accommodation.module#AccommodationPageModule' }
+  { path: 'accommodation', loadChildren: './accommodation/accommodation.module#AccommodationPageModule' },  { path: 'passwordreset', loadChildren: './passwordreset/passwordreset.module#PasswordresetPageModule' },
+  { path: 'adminprofile', loadChildren: './adminprofile/adminprofile.module#AdminprofilePageModule' }
+
 
 ];
 

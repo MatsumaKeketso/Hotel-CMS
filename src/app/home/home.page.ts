@@ -15,8 +15,10 @@ import { HotelmasterPage } from '../hotelmaster/hotelmaster.page';
 })
 export class HomePage implements OnInit {
   db = firebase.firestore();
+  // css properties DON'T TOUCH**********
   page = '';
   classesToApply = 'links-contain';
+  
   active = {
     master: false,
     accommodation: false,
@@ -28,6 +30,7 @@ export class HomePage implements OnInit {
     hotelmaster: false,
     call: this.ChangeView
   }
+  //*************************** */
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -89,15 +92,6 @@ ChangeView(val){
   this.classesToApply = val;
 
 }
-getBooking() {
-  this.db.collection('bookings').get().then(snapshot => {
-   if (snapshot.empty !== true) {
-     snapshot.forEach(doc => {
-       this.bookings.push(doc.data());
-     });
-     this.overallbookings = this.bookings.length;
-   }
-  });
-}
+
 }
 

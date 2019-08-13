@@ -3,7 +3,7 @@ import { FormGroup,Validators, FormBuilder } from '@angular/forms';
 
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/user/auth.service';
-import { Router } from '@angular/router';
+import { Router, PreloadAllModules } from '@angular/router';
 import * as firebase from 'firebase';
 
 @Component({
@@ -66,7 +66,71 @@ export class LoginPage implements OnInit {
       
     });
   }
-  register() {
-    this.router.navigate((['register']));
+async  register() {
+    const alert = await this.alertCtrl.create({
+      header: 'Enter your email',
+      message: 'We need to your email to send the password reset link.',
+      inputs: [
+        {
+          name: 'adminemail',
+          type: 'email',
+          placeholder: 'your@example.com'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'danger',
+          handler: () => {
+            console.log('Admin Cancelled');
+          }
+        },
+        {
+          text: 'Reset',
+          cssClass: 'primary',
+          handler: async data => {
+            const loading = await this.loadingCtrl.create({
+              message: 'Working',
+              spinner: 'bubbles'
+            });
+            loading.present();
+            console.log('Admin Sent Email ', data.adminemail, 'and url is ', window.location.href);
+            const actionCodeSettings = {
+              url: 'window.location.href',
+              // When multiple custom dynamic link domains are defined, specify which
+              // one to use.
+              dynamicLinkDomain: 'hotel-cms-d3e5c.firebaseapp.com'
+            };
+            firebase.auth().sendPasswordResetEmail(data.adminemail)
+              .then( async res => {
+                loading.dismiss();
+                const response = await this.alertCtrl.create({
+                  message: 'Verification email sent',
+                  buttons: [{
+                    text: 'Okay',
+                    role: 'cancel'
+                  }]
+                });
+                response.present();
+                loading.dismiss();
+              })
+              .catch( async error => {
+                loading.dismiss();
+                const response = await this.alertCtrl.create({
+                  message: 'Error sending email. Please try again later.',
+                  buttons: [{
+                    text: 'Okay',
+                    role: 'cancel'
+                  }]
+                });
+                response.present();
+              });
+          }
+        }
+
+      ]
+    });
+    alert.present();
   }
 }

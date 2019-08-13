@@ -1,20 +1,114 @@
 <ion-content>
-<div class="container">
-  <div class="title">
-    <div>
-      <h3>Bookings: {{overallbookings}}</h3>
+  <div class="container">
+    <div class="users">
+      <div class="title">
+        <h3>Users</h3>
+      </div>
+      <div class="list">
+        <div class="image">
+          <div class="name">
+            <p>Name Surname</p>
+          </div>
+          <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+        </div>
+        <div class="image">
+            <div class="name">
+              <p>Name Surname</p>
+            </div>
+            <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+          </div>
+          <div class="image">
+              <div class="name">
+                <p>Name Surname</p>
+              </div>
+              <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+            </div>
+            <div class="image">
+                <div class="name">
+                  <p>Name Surname</p>
+                </div>
+                <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+              </div>
+              <div class="image">
+                  <div class="name">
+                    <p>Name Surname</p>
+                  </div>
+                  <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+                </div>
+                <div class="image">
+                    <div class="name">
+                      <p>Name Surname</p>
+                    </div>
+                    <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+                  </div>
+
+                  <div class="image">
+                      <div class="name">
+                        <p>Name Surname</p>
+                      </div>
+                      <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+                    </div>
+                    <div class="image">
+                        <div class="name">
+                          <p>Name Surname</p>
+                        </div>
+                        <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+                      </div>
+      </div>
+    </div>
+    <div class="profile">
+      <div class="opac"></div>
+      <div class="fullname">
+        <p>Name Surname</p>
+      </div>
+      <div class="contacts">
+        <p>012548789962</p>
+        <p>areallylongemail@mail.com</p>
+      </div>
+      <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+    </div>
+    <div class="reviews">
+      <div class="header">
+        <h3>Reviews</h3>
+      </div>
+      <div class="rev-list">
+        <div class="text">
+          <h5>27 Jul, 2019</h5>
+          "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+        </div>
+        <div class="text">
+            <h5>27 Jul, 2019</h5>
+            "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+          </div>
+          <div class="text">
+              <h5>27 Jul, 2019</h5>
+              "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+            </div>
+            <div class="text">
+                <h5>27 Jul, 2019</h5>
+                "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+              </div>
+              <div class="text">
+                  <h5>27 Jul, 2019</h5>
+                  "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+                </div>
+                <div class="text">
+                    <h5>27 Jul, 2019</h5>
+                    "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+                  </div>
+                  <div class="text">
+                      <h5>27 Jul, 2019</h5>
+                      "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+                    </div>
+                    <div class="text">
+                        <h5>27 Jul, 2019</h5>
+                        "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+                      </div>
+                      <div class="text">
+                          <h5>27 Jul, 2019</h5>
+                          "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+                        </div>
+      </div>
     </div>
   </div>
-  <div class="bookings">
-    <div *ngFor="let n of bookings" class="card">
-      <div class="head">
-        <h3> {{n.roomname}} </h3>
-      </div>
-      <div class="body">
-        <p>Was booked by, {{n.name}} {{n.surname}} </p>
-        <p>Who was staying from {{n.checkin | date}} to {{n.checkout | date}} (<i>{{n.days}} days</i>) with {{n.adults}} person(s) </p>
-      </div>
-    </div>  
-  </div>
-</div>
 </ion-content>
