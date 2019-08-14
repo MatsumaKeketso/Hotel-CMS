@@ -32,8 +32,22 @@ export class BookingsPage implements OnInit {
   }
   selectUser(user){
     this.user = user;
+    this.reviews = [];
+    this.db.collection('reviews').where('uid', '==', user.uid).get().then(snapshot => {
+      if (snapshot.empty){
+        console.log('No review');
+        this.isreviews = false;
+      } else {
+        this.isreviews = true;
+        snapshot.forEach(doc => {
+          this.reviews.push(doc.data())
+        })
+        
+      }
+    })
   }
   getReviews(){
+    this.reviews = [];
     this.db.collection('reviews').get().then(snapshot => {
       if (snapshot.empty !== true) {
         this.isreviews = true;

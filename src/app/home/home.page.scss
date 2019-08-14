@@ -83,6 +83,63 @@
             }
             
       }
+      .inactive-profile{
+            overflow: hidden;
+            width: 0px;
+            height: 0%;
+            position: absolute;
+            top: 0;
+            right: 10px;
+            display: flex;
+            transition: 0.4s;
+            opacity: 1;
+            .name{
+                  cursor: pointer;
+                  width: 40%;
+                  height: 100%;
+                  display: grid;
+                  align-items: center;
+                  padding: 0px 6px;
+            }
+            .actualprof{
+                  transition: 0.4s;
+                  cursor: pointer;
+                  background: red;
+                  color: rgb(0, 0, 0);
+                  border-radius: 200px;
+                  width: 0%;
+                  height: 50px;
+                  display:flex;
+                  align-items: center;
+                  box-shadow: 0px 3px 3px #17171742;
+                  margin: auto 0px;
+                  text-align: right;
+                  text-align: center;
+                  overflow: visible;
+                  
+                  p{
+                        margin: 0;
+                        padding: 0px 6px;
+                        text-align: right;
+                  }
+                  .image{
+                        transition: 0.4s;
+                        width: 0px;
+                        height: 0px;
+                        opacity: 1;
+                        border-radius: 200px;
+                        overflow: hidden;
+                        // margin-left: -10px;
+                        box-shadow: 0px 3px 3px #17171742;
+                        img{
+                              height: 100%;
+                              width: 100%;
+                              object-fit: cover;
+                        }
+                  }
+            }
+            
+      }
       .profile:hover .name{
             cursor: pointer;
                   width: 40%;

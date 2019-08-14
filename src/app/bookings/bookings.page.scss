@@ -120,6 +120,15 @@
                   overflow: hidden;
                   overflow-y: auto;
                   border-radius: 10px 10px 0px 0px;
+                  p{
+                        background: red;
+                        color: white;
+                        width: 50%;
+                        margin: 10px auto;
+                        border-radius: 5px;
+                        padding: 5px;
+                        text-align: center;
+                  }
                   .text{
                         width: 90%;
                         margin: 5px auto;

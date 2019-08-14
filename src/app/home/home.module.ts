@@ -8,6 +8,7 @@ import { HomePage } from './home.page';
 import { HotelmasterPage } from '../hotelmaster/hotelmaster.page';
 import { AccommodationPage } from '../accommodation/accommodation.page';
 import { BookingsPage } from '../bookings/bookings.page';
+import { AdminprofilePage } from '../adminprofile/adminprofile.page';
 
 @NgModule({
   imports: [
@@ -21,6 +22,6 @@ import { BookingsPage } from '../bookings/bookings.page';
       }
     ])
   ],
-  declarations: [HomePage, HotelmasterPage, BookingsPage, AccommodationPage]
+  declarations: [HomePage, HotelmasterPage, BookingsPage, AccommodationPage, ]
 })
 export class HomePageModule {}

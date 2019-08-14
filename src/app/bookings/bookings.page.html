@@ -29,12 +29,13 @@
         <h3>Reviews</h3>
       </div>
       <div class="rev-list">
-        <p *ngIf="!isreviews">No reviews to disply</p>
+        <p *ngIf="!isreviews">No reviews to display.</p>
         <div class="text" *ngFor="let r of reviews">
           
-          <div *ngIf="room.name==r.name">
-              <h5>27 Jul, 2019</h5>
-              "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
+          <div>
+              <h5>{{r.date}}</h5>
+              "<i>{{r.text}}</i>"
+              
           </div>
         </div>
       </div>

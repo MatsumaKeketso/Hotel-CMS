@@ -4,16 +4,18 @@
       <img src="../../assets/icon.png" alt="">
       
     </div>
-    <div class="hotel">
+    <div class="hotel" (click)="home()">
         <p>Azure Grotto</p>
     </div>
-    <div class="profile">
-      <div class="name">
-        <p>Profile Name</p>
+    <div [class]="profiletoapply">
+      <div class="name" (click)="profile()">
+        <p *ngIf="!admin.name">Edit Profile</p>
+        <p *ngIf="admin.name">{{admin.name}}</p>
       </div>
       <div class="actualprof">
-        <div class="image">
-          <img src="../../assets/office-vector.png" alt="">
+        <div class="image" (click)="profile()">
+            <img *ngIf="!admin.image" src="../../assets/icon.png" alt="">
+          <img *ngIf="admin.image" src="{{admin.image}}" alt="">
         </div>
         <div (click)="logOut()">
           <p>Signout</p>

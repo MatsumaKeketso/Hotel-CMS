@@ -1,9 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>adminprofile</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <h1>Manage Profile</h1>
+  <div *ngIf="!isprofile" class="profile-form">
+    <ion-item>
+      <ion-input type="file" accept="image/*" multiple="false" (change)="getImage($event.target.files)"></ion-input>
+</ion-item>
+<p *ngIf="isuploading">Uploading</p>
+<p *ngIf="isuploaded">Done</p>
+<ion-item>
+  <ion-label position="floating" >Fullname</ion-label>
+  <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Phone Number</ion-label>
+  <ion-input type="tel" [(ngModel)]="profile.number"></ion-input>
+</ion-item>
+<ion-item>
+    <ion-label position="floating">Email</ion-label>
+    <ion-input type="email" [(ngModel)]="profile.email"></ion-input>
+  </ion-item>
+<ion-item>
+  <ion-label position="floating">Position</ion-label>
+      <ion-select multiple="false" [(ngModel)]="profile.position">
+          <ion-select-option>Manager</ion-select-option>
+          <ion-select-option>Administrator</ion-select-option>
+          <ion-select-option>Supervisor</ion-select-option>
+      </ion-select>
 
+</ion-item>
+<ion-item>
+    <ion-label position="floating">Bio</ion-label>
+    <ion-textarea rows="10" cols="500" [(ngModel)]="profile.bio"></ion-textarea>
+  </ion-item>
+<ion-button expand="full" (click)="createAccount()">
+  Done
+</ion-button>
+  </div>
+  <div *ngIf="isprofile" class="profileD">
+    <div class="image">
+      <img src="{{profile.image}}" alt="">
+    </div>
+    <div class="details">
+      <h1>{{profile.name}}</h1>
+      <p>logged-in as <b>{{profile.position}}</b></p>
+
+      <p>{{profile.bio}}</p>
+
+      <div class="details">
+        <p>{{profile.email}}</p> <p>{{profile.number}}</p>
+      </div>
+    </div>
+    <ion-button expand="full" (click)="edit()">
+        Edit
+      </ion-button>
+  </div>
 </ion-content>

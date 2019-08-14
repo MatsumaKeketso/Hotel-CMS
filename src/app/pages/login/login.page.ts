@@ -5,6 +5,7 @@ import { LoadingController, AlertController } from '@ionic/angular';
 import { AuthService } from '../../services/user/auth.service';
 import { Router, PreloadAllModules } from '@angular/router';
 import * as firebase from 'firebase';
+import { ProfileService } from '../../services/user/profile.service';
 
 @Component({
   selector: 'app-login',
@@ -22,6 +23,7 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private profileService: ProfileService
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
@@ -35,6 +37,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     firebase.auth().onAuthStateChanged(res => {
       if (res) {
+        this.profileService.storeAdmin(res);
         this.router.navigateByUrl('home', { skipLocationChange: true });
       }
     });
@@ -45,7 +48,8 @@ export class LoginPage implements OnInit {
       await this.loading.present();
 
       firebase.auth().signInWithEmailAndPassword(loginForm.email, loginForm.password).then(user => {
-          this.loading.dismiss().then(() => {
+          this.loading.dismiss().then(res => {
+            this.profileService.storeAdmin(res);
              this.router.navigateByUrl('home', { skipLocationChange: true });
           });
         },
@@ -63,7 +67,6 @@ export class LoginPage implements OnInit {
   forgotpassword(email) {
     firebase.auth().sendPasswordResetEmail(email).then(res => {
       console.log(res);
-      
     });
   }
 async  register() {

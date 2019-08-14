@@ -15,14 +15,15 @@ import { FormsModule } from '@angular/forms';
 import { BookingsPage } from './bookings/bookings.page';
 import { AccommodationPage } from './accommodation/accommodation.page';
 import { HotelmasterPage } from './hotelmaster/hotelmaster.page';
+import { AdminprofilePage } from './adminprofile/adminprofile.page';
 
 firebase.initializeApp(FIREBASE_CONFIG);
 @NgModule({
-  declarations: [AppComponent
+  declarations: [AppComponent,AdminprofilePage
     
   ],
   entryComponents: [
-    
+    AdminprofilePage
   ],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule],
   providers: [

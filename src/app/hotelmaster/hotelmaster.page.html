@@ -79,7 +79,12 @@
                               <ion-item>
 
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.outdoors">
-                                          <ion-select-option *ngFor="let item of facilityoptions.outdoors">{{item}}</ion-select-option>
+                                                <ion-select-option >Outdoor furniture</ion-select-option>
+                                                <ion-select-option >Beachfront</ion-select-option>
+                                                <ion-select-option >Sun terrace</ion-select-option>
+                                                <ion-select-option >Terrace</ion-select-option>
+                                                <ion-select-option >Garden</ion-select-option>
+                                                
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -88,7 +93,8 @@
                               <ion-item>
 
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.internet">
-                                          <ion-select-option *ngFor="let item of facilityoptions.internet">{{item}}</ion-select-option>
+                                                <ion-select-option >Wifi is available and free of charge</ion-select-option>
+                                                <ion-select-option >Free wifi not available</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -97,7 +103,20 @@
                               <ion-item>
 
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.general">
-                                          <ion-select-option *ngFor="let item of facilityoptions.general">{{item}}</ion-select-option>
+                                                <ion-select-option >Shuttle service</ion-select-option>
+                                                <ion-select-option >Airport shuttle</ion-select-option>
+                                                <ion-select-option >Designated smoking area</ion-select-option>
+                                                <ion-select-option >Air conditioning'</ion-select-option>
+                                                <ion-select-option >Packed lunches</ion-select-option>
+                                                <ion-select-option >Heating</ion-select-option>
+                                                <ion-select-option >Gift shop</ion-select-option>
+                                                <ion-select-option >Safety deposit box</ion-select-option>
+                                                <ion-select-option >Lift</ion-select-option>
+                                                <ion-select-option >Barber/beauty shop</ion-select-option>
+                                                <ion-select-option >Facilities for disabled guests</ion-select-option>
+                                                <ion-select-option >Non-smoking rooms</ion-select-option>
+                                                <ion-select-option >Newspapers</ion-select-option>
+                                                <ion-select-option >Room service</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -107,7 +126,8 @@
                               <h1>Pets</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.pets">
-                                          <ion-select-option *ngFor="let item of facilityoptions.pets">{{item}}</ion-select-option>
+                                                <ion-select-option >Pets allowed</ion-select-option>
+                                                <ion-select-option >Pets not allowed</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -116,7 +136,8 @@
                               <ion-item>
 
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.parking">
-                                          <ion-select-option *ngFor="let item of facilityoptions.parking">{{item}}</ion-select-option>
+                                                <ion-select-option >Parking garage</ion-select-option>
+                                                <ion-select-option >Secure Parking</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -124,7 +145,17 @@
                               <h1>Languages spoken</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.languages">
-                                          <ion-select-option *ngFor="let item of facilityoptions.languages">{{item}}</ion-select-option>
+                                                <ion-select-option >English</ion-select-option>
+                                                <ion-select-option >Afrikaans</ion-select-option>
+                                                <ion-select-option >Zulu</ion-select-option>
+                                                <ion-select-option >Xhosa</ion-select-option>
+                                                <ion-select-option >Southern Sotho</ion-select-option>
+                                                <ion-select-option >Tswana</ion-select-option>
+                                                <ion-select-option >Venda</ion-select-option>
+                                                <ion-select-option >Nothern Sotho</ion-select-option>
+                                                <ion-select-option >Tsonga</ion-select-option>
+                                                <ion-select-option >Swati</ion-select-option>
+                                                <ion-select-option >Ndebele</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -134,7 +165,10 @@
                               <h1>Activities</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.activities">
-                                          <ion-select-option *ngFor="let item of facilityoptions.activities">{{item}}</ion-select-option>
+                                          <ion-select-option >Beach</ion-select-option>
+                                          <ion-select-option >Cycling</ion-select-option>
+                                          <ion-select-option >Bicycle rental</ion-select-option>
+                                          <ion-select-option >Golf course (within 3 km)</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -142,7 +176,8 @@
                               <h1>Transport</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.transport">
-                                          <ion-select-option *ngFor="let item of facilityoptions.transport">{{item}}</ion-select-option>
+                                                <ion-select-option >Airport drop off</ion-select-option>
+                                                <ion-select-option >Airport pick up</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -150,7 +185,11 @@
                               <h1>Cleaning services</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.cleaning">
-                                          <ion-select-option *ngFor="let item of facilityoptions.cleaning">{{item}}</ion-select-option>
+                                                <ion-select-option >Daily housekeeping</ion-select-option>
+                                                <ion-select-option >Trouser press</ion-select-option>
+                                                <ion-select-option >Ironing service</ion-select-option>
+                                                <ion-select-option >Dry cleaning</ion-select-option>
+                                                <ion-select-option >Laundry</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -160,7 +199,14 @@
                               <h1>Food & Drink</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.food">
-                                          <ion-select-option *ngFor="let item of facilityoptions.food">{{item}}</ion-select-option>
+                                                <ion-select-option >On-site coffee house</ion-select-option>
+                                                <ion-select-option >Bottle of water</ion-select-option>
+                                                <ion-select-option >Wine/champagne</ion-select-option>
+                                                <ion-select-option >Special diet menus (on request)</ion-select-option>
+                                                <ion-select-option >Breakfast in the room</ion-select-option>
+                                                <ion-select-option >Bar</ion-select-option>
+                                                <ion-select-option >Restaurant</ion-select-option>
+                                                <ion-select-option >Very good coffee!</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -168,7 +214,11 @@
                               <h1>Reception services</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.reception">
-                                          <ion-select-option *ngFor="let item of facilityoptions.reception">{{item}}</ion-select-option>
+                                                <ion-select-option >Concierge service</ion-select-option>
+                                                <ion-select-option >Luggage storage</ion-select-option>
+                                                <ion-select-option >Tour desk</ion-select-option>
+                                                <ion-select-option >Currency exchange</ion-select-option>
+                                                <ion-select-option >24-hour front desk</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -176,7 +226,9 @@
                               <h1>Business facilities</h1>
                               <ion-item>
                                     <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.business">
-                                          <<ion-select-option *ngFor="let item of facilityoptions.business">{{item}}</ion-select-option>
+                                                <ion-select-option >Fax/photocopying</ion-select-option>
+                                                <ion-select-option >Business centre</ion-select-option>
+                                                <ion-select-option >Meeting/banquet facilities</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>

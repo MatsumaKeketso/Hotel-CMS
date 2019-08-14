@@ -22,20 +22,6 @@ export class HotelmasterPage implements OnInit {
  uploadprogress = 0;
 
  imagegallery  = [];
-  facilityoptions ={
-    outdoors: ['Outdoor furniture', 'Beachfront', 'Sun terrace', 'Terrace', 'Garden'],
-    pets: ['Pets are not allowed.', 'Pets are allowed.'],
-    activities: ['Beach', 'Cycling', 'Bicycle rental', 'Golf course (within 3 km)'],
-    food: ['On-site coffee house', 'Bottle of water', 'Wine/champagne', 'Special diet menus (on request)', 'Breakfast in the room', 'Bar', 'Restaurant', 'Very good coffee!'],
-    internet: ['Wifi is available and free of charge', 'Free wifi not available'],
-    general: ['Shuttle service', 'Airport shuttle','Designated smoking area', 'Air conditioning', 'Packed lunches', 'Heating', 'Gift shop', 'Safety deposit box', 'Lift', 'Barber/beauty shop', 'Facilities for disabled guests', 'Non-smoking rooms', 'Newspapers', 'Room service'],
-    business: ['Fax/photocopying', 'Business centre', 'Meeting/banquet facilities'],
-    cleaning: ['Daily housekeeping', 'Trouser press', 'Ironing service', 'Dry cleaning', 'Laundry'],
-    transport: ['Airport drop off', 'Airport pick up'],
-    reception: ['Concierge service', 'Luggage storage', 'Tour desk', 'Currency exchange', '24-hour front desk'],
-    parking: ['Parking garage', 'Secure Parking'],
-    languages: ['English', 'Afrikaans', 'Zulu', 'Xhosa', 'Southern Sotho', 'Tswana', 'Venda', 'Nothern Sotho', 'Tsonga', 'Swati', 'Ndebele']
-  }
  facilities = {
    outdoors: [],
    internet: [],
@@ -66,6 +52,7 @@ export class HotelmasterPage implements OnInit {
     this.getdata();
     this.getimages();
     this.getAttractions();
+    this.getfacilities()
   }
   onClick(category) {
     if (category == 1) {
@@ -242,6 +229,12 @@ export class HotelmasterPage implements OnInit {
     });
   }
   getfacilities(){
+    this.db.collection('facilities').get().then(snapshot => {
+      snapshot.forEach(doc => {
+        console.log('Facilities ', doc.data());
+        this.facilities = doc.data();
+      })
+    })
   }
   async attractionimage(image) {
     let imagetosend = image.item(0);
