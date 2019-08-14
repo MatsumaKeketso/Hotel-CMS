@@ -8,21 +8,42 @@ import * as firebase from 'firebase';
 })
 export class BookingsPage implements OnInit {
   db = firebase.firestore();
-  overallbookings = 0;
-  bookings = [];
+  overallusers = 0;
+  users = [];
+  user = {}
+
+  reviews = []
+  isreviews = false;
   constructor() { }
 
   ngOnInit() {
-    this.getBooking();
+    this.getUsers();
   }
-  getBooking() {
-    this.db.collection('bookings').get().then(snapshot => {
+  getUsers() {
+    this.db.collection('users').get().then(snapshot => {
      if (snapshot.empty !== true) {
        snapshot.forEach(doc => {
-         this.bookings.push(doc.data());
+         this.users.push(doc.data());
        });
-       this.overallbookings = this.bookings.length;
+       this.user = this.users[0];
+       this.overallusers = this.users.length;
      }
     });
+  }
+  selectUser(user){
+    this.user = user;
+  }
+  getReviews(){
+    this.db.collection('reviews').get().then(snapshot => {
+      if (snapshot.empty !== true) {
+        this.isreviews = true;
+        snapshot.forEach(doc => {
+          this.reviews.push(doc.data());
+        });
+      } else {
+        console.log('No reviews');
+        
+      }
+     });
   }
 }

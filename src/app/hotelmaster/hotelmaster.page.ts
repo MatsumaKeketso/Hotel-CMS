@@ -22,13 +22,50 @@ export class HotelmasterPage implements OnInit {
  uploadprogress = 0;
 
  imagegallery  = [];
-
- 
+  facilityoptions ={
+    outdoors: ['Outdoor furniture', 'Beachfront', 'Sun terrace', 'Terrace', 'Garden'],
+    pets: ['Pets are not allowed.', 'Pets are allowed.'],
+    activities: ['Beach', 'Cycling', 'Bicycle rental', 'Golf course (within 3 km)'],
+    food: ['On-site coffee house', 'Bottle of water', 'Wine/champagne', 'Special diet menus (on request)', 'Breakfast in the room', 'Bar', 'Restaurant', 'Very good coffee!'],
+    internet: ['Wifi is available and free of charge', 'Free wifi not available'],
+    general: ['Shuttle service', 'Airport shuttle','Designated smoking area', 'Air conditioning', 'Packed lunches', 'Heating', 'Gift shop', 'Safety deposit box', 'Lift', 'Barber/beauty shop', 'Facilities for disabled guests', 'Non-smoking rooms', 'Newspapers', 'Room service'],
+    business: ['Fax/photocopying', 'Business centre', 'Meeting/banquet facilities'],
+    cleaning: ['Daily housekeeping', 'Trouser press', 'Ironing service', 'Dry cleaning', 'Laundry'],
+    transport: ['Airport drop off', 'Airport pick up'],
+    reception: ['Concierge service', 'Luggage storage', 'Tour desk', 'Currency exchange', '24-hour front desk'],
+    parking: ['Parking garage', 'Secure Parking'],
+    languages: ['English', 'Afrikaans', 'Zulu', 'Xhosa', 'Southern Sotho', 'Tswana', 'Venda', 'Nothern Sotho', 'Tsonga', 'Swati', 'Ndebele']
+  }
+ facilities = {
+   outdoors: [],
+   internet: [],
+   general: [],
+   pets: [],
+   parking: [],
+   languages: [],
+   activities: [],
+   transport: [],
+   cleaning: [],
+   food: [],
+   reception: [],
+   business: [],
+ }
+ attraction = {
+   category: '',
+   image: '',
+   name: '',
+   distance: null,
+   description: ''
+ }
+ listattractions =[];
+ attractionUpload = null;
+ isuploading = false;
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
     this.getdata();
     this.getimages();
+    this.getAttractions();
   }
   onClick(category) {
     if (category == 1) {
@@ -182,5 +219,192 @@ export class HotelmasterPage implements OnInit {
       });
       alert.present();
     });
+  }
+  hotelfacilities() {
+    const dbFacilities = this.db.collection('facilities').doc('AzureFacilities');
+    dbFacilities.update({
+      outdoors: this.facilities.outdoors,
+      internet: this.facilities.internet,
+      general: this.facilities.general,
+      pets: this.facilities.pets,
+      parking: this.facilities.parking,
+      languages: this.facilities.languages,
+      activities: this.facilities.activities,
+      transport: this.facilities.transport,
+      cleaning: this.facilities.cleaning,
+      food: this.facilities.food,
+      reception: this.facilities.reception,
+      business: this.facilities.business,
+    }).then(res=> {
+      console.log('Success');
+    }).catch(err => {
+      console.log('facilities error');
+    });
+  }
+  getfacilities(){
+  }
+  async attractionimage(image) {
+    let imagetosend = image.item(0);
+    if (!imagetosend) {
+      const imgalert = await this.alertCtrl.create({
+        message: 'Select image to upload',
+        buttons: [{
+          text: 'Okay',
+          role: 'cancel'
+        }]
+      });
+      imgalert.present();
+    } else {
+      if (imagetosend.type.split('/')[0] !== 'image') {
+        const imgalert = await this.alertCtrl.create({
+          message: 'Unsupported file type.',
+          buttons: [{
+            text: 'Okay',
+            role: 'cancel'
+          }]
+        });
+        imgalert.present();
+        imagetosend = '';
+        return;
+       } else {
+        const upload = this.storage.child(image.item(0).name).put(imagetosend);
+
+        upload.on('state_changed', snapshot => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          this.attractionUpload = progress;
+          this.isuploading = true;
+          
+        }, error => {
+
+        }, () => {
+          upload.snapshot.ref.getDownloadURL().then(downUrl => {
+              this.attraction.image = downUrl;
+            this.isuploading = false;
+          });
+        });
+       }
+    }
+  }
+  async addAttraction(){
+    this.listattractions = []
+    const worker = await this.alertCtrl.create({
+      message: 'Working'
+    })
+    worker.present();
+    if (this.attraction.name=='' ||
+    this.attraction.distance==''
+    ) {
+      worker.dismiss();
+      const distanceerr = await this.alertCtrl.create({
+        message: "Can't leave distance or name empty.",
+        cssClass: 'danger'
+      })
+      distanceerr.present();
+    } else {
+      if (this.attraction.image==''){
+        worker.dismiss();
+        const distanceerr = await this.alertCtrl.create({
+          message: 'You did not select an image.',
+          cssClass: 'danger'
+        })
+        distanceerr.present();
+      } else {
+        if (this.attraction.name.length == 10){
+          worker.dismiss();
+      const distanceerr = await this.alertCtrl.create({
+        message: 'This name is too long. Provide a shorter name.',
+        cssClass: 'danger'
+      })
+      distanceerr.present();
+    } else {
+      if (this.attraction.distance > 40){
+        worker.dismiss();
+        const distanceerr = await this.alertCtrl.create({
+          message: 'The attraction should not be more than 40 km in distance.',
+          cssClass: 'danger'
+        })
+        distanceerr.present();
+      } else {
+        this.db.collection('attractions').doc(this.attraction.name).set(this.attraction).then( async res => {
+          this.getAttractions();
+          const distanceerr = await this.alertCtrl.create({
+            message: 'Attraction saved Successfully.'
+          })
+          distanceerr.present();
+          this.attraction = {
+            category: '',
+            image: '',
+            name: '',
+            distance: null,
+            description: ''
+          }
+          worker.dismiss();
+        }).catch( async err => {
+          worker.dismiss();
+          const distanceerr = await this.alertCtrl.create({
+            message: 'Error saving attraction.',
+            cssClass: 'danger'
+          })
+          distanceerr.present();
+        })
+      }
+    }
+      }
+    }
+  }
+  async getAttractions(){
+    this.listattractions = []
+    const getter = await this.loadingCtrl.create({
+      message: 'Working'
+    })
+    getter.present();
+    this.db.collection('attractions').get().then(snapshot => {
+      if (snapshot.empty){
+        getter.dismiss()
+        console.log('No documents');
+      } else {
+        snapshot.forEach(doc => {
+          this.listattractions.push(doc.data());
+        })
+        getter.dismiss();
+      }
+    })
+  }
+  async deleteAttraction(value){
+    this.listattractions = []
+const worker = await this.loadingCtrl.create({
+      message: 'Working',
+      spinner: 'bubbles'
+    })
+    worker.present()
+    this.db.collection('attractions').doc(value.name).delete().then( async res => {
+      this.getAttractions();
+      worker.dismiss()
+      const notifier = await this.alertCtrl.create({
+        message: 'Attraction removed'
+      })
+      
+      notifier.present();
+    }).catch( async err => {
+      this.getAttractions();
+      worker.dismiss()
+      const notifier = await this.alertCtrl.create({
+        message: 'Error removing attraction'
+      })
+      notifier.present();
+      
+    })
+  }
+  async updateAttraction(value) {
+    this.attraction = value;
+  }
+  clearattractionform(){
+    this.attraction = {
+      category: '',
+      image: '',
+      name: '',
+      distance: null,
+      description: ''
+    }
   }
 }

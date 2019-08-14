@@ -54,7 +54,7 @@
             <div class="gallery" *ngIf="active.gallery">
                   <div class="header">
                         <ion-item>
-                              <ion-input type="file" accept="image/*" multiple (change)="uploadimage($event.target.files)"></ion-input>
+                              <ion-input type="file" accept="image/*" multiple="false" (change)="uploadimage($event.target.files)"></ion-input>
                         </ion-item>
                         <ion-progress-bar value="{{uploadprogress / 100}}"></ion-progress-bar>
                   </div>
@@ -78,9 +78,8 @@
                               <h1>Outdoors</h1>
                               <ion-item>
 
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.outdoors">
+                                          <ion-select-option *ngFor="let item of facilityoptions.outdoors">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -88,9 +87,8 @@
                               <h1>Internet</h1>
                               <ion-item>
 
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.internet">
+                                          <ion-select-option *ngFor="let item of facilityoptions.internet">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -98,9 +96,8 @@
                               <h1>General</h1>
                               <ion-item>
 
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.general">
+                                          <ion-select-option *ngFor="let item of facilityoptions.general">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -109,9 +106,8 @@
                         <div>
                               <h1>Pets</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.pets">
+                                          <ion-select-option *ngFor="let item of facilityoptions.pets">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -119,18 +115,16 @@
                               <h1>Parking</h1>
                               <ion-item>
 
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.parking">
+                                          <ion-select-option *ngFor="let item of facilityoptions.parking">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
                         <div>
                               <h1>Languages spoken</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.languages">
+                                          <ion-select-option *ngFor="let item of facilityoptions.languages">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -139,27 +133,24 @@
                         <div>
                               <h1>Activities</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.activities">
+                                          <ion-select-option *ngFor="let item of facilityoptions.activities">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
                         <div>
                               <h1>Transport</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.transport">
+                                          <ion-select-option *ngFor="let item of facilityoptions.transport">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
                         <div>
                               <h1>Cleaning services</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.cleaning">
+                                          <ion-select-option *ngFor="let item of facilityoptions.cleaning">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
@@ -168,33 +159,30 @@
                         <div>
                               <h1>Food & Drink</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.food">
+                                          <ion-select-option *ngFor="let item of facilityoptions.food">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
                         <div>
                               <h1>Reception services</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.reception">
+                                          <ion-select-option *ngFor="let item of facilityoptions.reception">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
                         <div>
                               <h1>Business facilities</h1>
                               <ion-item>
-                                    <ion-select multiple="true" placeholder="Select Options">
-                                          <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                                          <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                                    <ion-select multiple="true" placeholder="Select Options" [(ngModel)]="facilities.business">
+                                          <<ion-select-option *ngFor="let item of facilityoptions.business">{{item}}</ion-select-option>
                                     </ion-select>
                               </ion-item>
                         </div>
                   </div>
                   <div class="one">
-                        <ion-button>
+                        <ion-button (click)="hotelfacilities()">
                               Save
                         </ion-button>
                   </div>
@@ -202,39 +190,54 @@
             <div class="attractions" *ngIf="active.attractions">
                   <div class="fom">
                         <div>
-                              <ion-item>
-                                    <ion-input type="file" accept="image/*" multiple="false"></ion-input>
+                                    <ion-progress-bar value="{{attractionUpload / 100}}"></ion-progress-bar>
+                                    <p *ngIf="attractionUpload==100">Done</p>
+                                    <p *ngIf="isuploading">Uploading</p>
+                                    <ion-item>
+                                                <ion-label position="floating" >Category of attraction</ion-label>
+                                          <ion-select multiple="false" [(ngModel)]="attraction.category">
+                                                      <ion-select-option value="natural">Natural</ion-select-option>
+                                                      <ion-select-option value="landmark">Landmark</ion-select-option>
+                                          </ion-select>
+                                          </ion-item>
+                              <ion-item>  
+                                    <ion-input type="file" accept="image/*" multiple="false" (change)="attractionimage($event.target.files)"></ion-input>
                               </ion-item>
                               <ion-item>
                                     <ion-label position="floating">Attraction Name</ion-label>
-                                    <ion-input type="text"></ion-input>
+                                    <ion-input type="text" [(ngModel)]="attraction.name"></ion-input>
                               </ion-item>
                               <ion-item>
-                                    <ion-label position="floating">Distance from Hotel</ion-label>
-                                    <ion-input type="text"></ion-input>
+                                    <ion-label position="floating" >Distance from Hotel</ion-label>
+                                    <ion-input type="text" [(ngModel)]="attraction.distance"></ion-input>
                               </ion-item>
                               <ion-item>
                                     <ion-label position="floating">Description</ion-label>
-                                    <ion-textarea rows="22" cols="50"></ion-textarea>
+                                    <ion-textarea rows="20" cols="40"  [(ngModel)]="attraction.description"></ion-textarea>
                               </ion-item>
-                              <ion-button>
-                                    <ion-icon slot="start" name="add"></ion-icon>
+                              <ion-button (click)="addAttraction()">
+                                    <ion-icon slot="start" name="save"></ion-icon>
                                     Save
                               </ion-button>
+                              <ion-button color="danger" (click)="clearattractionform()">
+                                          <ion-icon slot="start" name="close"></ion-icon>
+                                          Clear
+                                    </ion-button>
                         </div>
                   </div>
                   <div class="f-disp">
-                        <div class="a-card">
+                        <div class="a-card" *ngFor="let attraction of listattractions" (click)="updateAttraction(attraction)">
                               <div class="image">
-                                    <img src="../../assets/office-vector.png">
+                                    <img src="{{attraction.image}}">
                               </div>
                               <div class="details">
-                                          <h1>Victoria & Alfred Waterfront</h1>
-                                          <h4>3.8 km</h4>
-                                          <p>Fishing boats and ocean liners cruise by the fabulous shops and restaurants that make this harbour Cape Town’s central shopping hub.</p>
+                                          <h1>{{attraction.name}}</h1>
+                                          <h4>{{attraction.distance}} km</h4>
+                                          <p *ngIf="!attraction.description">No description</p>
+                                          <p *ngIf="attraction.description">{{attraction.description}}</p>
                               </div>
                               <div class="remove">
-                                    <ion-fab-button color="danger">
+                                    <ion-fab-button color="danger" (click)="deleteAttraction(attraction)">
                                           <ion-icon name="trash"></ion-icon>
                                     </ion-fab-button>
                               </div>

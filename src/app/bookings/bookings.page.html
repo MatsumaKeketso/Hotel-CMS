@@ -5,109 +5,38 @@
         <h3>Users</h3>
       </div>
       <div class="list">
-        <div class="image">
+        <div class="image" *ngFor="let u of users" (click)="selectUser(u)">
           <div class="name">
-            <p>Name Surname</p>
+            <p>{{u.name}} {{u.surname}}</p>
           </div>
-          <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+          <img src="{{u.image}}" alt="">
         </div>
-        <div class="image">
-            <div class="name">
-              <p>Name Surname</p>
-            </div>
-            <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-          </div>
-          <div class="image">
-              <div class="name">
-                <p>Name Surname</p>
-              </div>
-              <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-            </div>
-            <div class="image">
-                <div class="name">
-                  <p>Name Surname</p>
-                </div>
-                <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-              </div>
-              <div class="image">
-                  <div class="name">
-                    <p>Name Surname</p>
-                  </div>
-                  <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-                </div>
-                <div class="image">
-                    <div class="name">
-                      <p>Name Surname</p>
-                    </div>
-                    <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-                  </div>
-
-                  <div class="image">
-                      <div class="name">
-                        <p>Name Surname</p>
-                      </div>
-                      <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-                    </div>
-                    <div class="image">
-                        <div class="name">
-                          <p>Name Surname</p>
-                        </div>
-                        <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
-                      </div>
       </div>
     </div>
     <div class="profile">
       <div class="opac"></div>
       <div class="fullname">
-        <p>Name Surname</p>
+        <p>{{user.name}} {{user.surname}}</p>
       </div>
       <div class="contacts">
-        <p>012548789962</p>
-        <p>areallylongemail@mail.com</p>
+        <p>{{user.phone}}</p>
+        <p>{{user.email}}</p>
       </div>
-      <img src="../../assets/kissclipart-co-working-clipart-coworking-office-ecacaf3ccaf01a26.jpg" alt="">
+      <img src="{{user.image}}" alt="">
     </div>
     <div class="reviews">
       <div class="header">
         <h3>Reviews</h3>
       </div>
       <div class="rev-list">
-        <div class="text">
-          <h5>27 Jul, 2019</h5>
-          "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-        </div>
-        <div class="text">
-            <h5>27 Jul, 2019</h5>
-            "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-          </div>
-          <div class="text">
+        <p *ngIf="!isreviews">No reviews to disply</p>
+        <div class="text" *ngFor="let r of reviews">
+          
+          <div *ngIf="room.name==r.name">
               <h5>27 Jul, 2019</h5>
               "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-            </div>
-            <div class="text">
-                <h5>27 Jul, 2019</h5>
-                "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-              </div>
-              <div class="text">
-                  <h5>27 Jul, 2019</h5>
-                  "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-                </div>
-                <div class="text">
-                    <h5>27 Jul, 2019</h5>
-                    "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-                  </div>
-                  <div class="text">
-                      <h5>27 Jul, 2019</h5>
-                      "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-                    </div>
-                    <div class="text">
-                        <h5>27 Jul, 2019</h5>
-                        "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-                      </div>
-                      <div class="text">
-                          <h5>27 Jul, 2019</h5>
-                          "Lorem aute voluptate sint sint duis irure sint eu Lorem excepteur. Amet dolore dolor est nisi. Sunt aliquip sit esse adipisicing velit mollit."
-                        </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -1,210 +1,92 @@
 <ion-content>
 <div class="form">
+            <ion-progress-bar value="{{uploadprogress / 100}}"></ion-progress-bar>
       <ion-item>
                   <ion-label position="stacked">Room image</ion-label>
-            <ion-input type="file" accept="image/*" multiple="false"></ion-input>
+                  <p *ngIf="isuploading">Uploading</p>
+                  <p *ngIf="!isuploading&&uploadprogress==100">Done</p>
+                              <ion-input type="file" accept="image/*" multiple="false" (change)="selectimage($event.target.files)"></ion-input>
       </ion-item>
             <ion-item>
                   <ion-label position="floating">Room Type</ion-label>
-                  <ion-input type="text"></ion-input>
+                  <ion-input type="text" [(ngModel)]="accommodation.name"></ion-input>
             </ion-item>
+            <ion-item>
+                        <ion-label position="floating">Room Rate (pp/pn)</ion-label>
+                        <ion-input type="text" [(ngModel)]="accommodation.price"></ion-input>
+                  </ion-item>
             <ion-item>
                         <ion-label position="floating">Features</ion-label>
-                  <ion-select multiple="true" >
-                        <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                        <ion-select-option value="hawaii">Hawaii</ion-select-option>
-                  </ion-select>
-            </ion-item>
-            <ion-item>
-                        <ion-label position="floating">Facilities</ion-label>
-                  <ion-select multiple="true">
-                        <ion-select-option value="peperoni">Peperoni</ion-select-option>
-                        <ion-select-option value="hawaii">Hawaii</ion-select-option>
+                  <ion-select multiple="true" [(ngModel)]="accommodation.features">
+                        <ion-select-option *ngFor="let f of features">{{f}}</ion-select-option>
                   </ion-select>
             </ion-item>
             <ion-item>
                   <ion-label position="floating">Description</ion-label>
-                  <ion-textarea rows="20" cols="50"></ion-textarea>
+                  <ion-textarea rows="10" cols="30" [(ngModel)]="accommodation.description"></ion-textarea>
             </ion-item>
-            <ion-button expand="full">
+            <ion-button expand="" (click)="add()">
             Save
             </ion-button>
+            <ion-button color="danger" expand="" (click)="clear()">
+                        Clear
+            </ion-button>
+            <ion-button expand="full" size="large" (click)="Tbookings()">
+                        Bookings
+                  </ion-button>
 </div>
 <div class="display">
-      <div class="d-card">
+      <div class="d-card" *ngFor="let n of listaccommodation" (click)="edit(n)">
+            <div [ngClass]="{'booking': !togglebookings, 'b-active': togglebookings}">
+                  <h1>Bookings for {{n.name}}</h1>
+                  <ion-button expand="full" color="light" (click)="Tbookings()">
+                        close
+                  </ion-button>
+                  <div class="book">
+                        <div class="b-card" *ngFor="let b of listbookings">
+                        <div *ngIf="n.name==b.roomname">
+                              
+                              <h2>{{b.roomname}}</h2>
+                              <p>Checkin: {{b.checkin | date}} </p>
+                              <p>Checkout: {{b.checkout | date}}</p>
+                              <p>Cost: R {{b.price}}</p>
+                              <div *ngFor="let u of listusers">
+                                          <p *ngIf="b.uid==u.uid">Booked by: {{u.name}} {{u.surname}}</p>
+                                          
+                              </div>
+                        </div>
+                        </div>
+                        
+                  </div>
+            </div>
             <div class="remove">
-                  <ion-fab-button color="danger">
+                  <ion-fab-button color="danger" (click)="delete(n)">
                         <ion-icon name="trash"></ion-icon>
                   </ion-fab-button>
             </div>
             <div class="d-image">
-                  <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
+                  <img src="{{n.image}}" alt="">
             </div>
             <div class="details">
                   <div class="r-name">
-                        <h3>Room Name</h3>
-                        <p>R 999 pp/pn</p>
+                        <h3>{{n.name}}</h3>
+                        <p>R {{n.price}} pp/pn</p>
                   </div>
-                  <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
+                  <p>{{n.description}}</p>
 
                   <div class="featuers">
                         <h3>Features</h3>
                         <hr>
                         <div class="fet">
-                              <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
+                              <p *ngFor="let f of n.features">{{f}}</p>
                         </div>
+                        <p>Created: {{n.lastcreated}}</p>
                   </div>
+                  
             </div>
       </div>
-      <div class="d-card">
-                  <div class="remove">
-                        <ion-fab-button color="danger">
-                              <ion-icon name="trash"></ion-icon>
-                        </ion-fab-button>
-                  </div>
-                  <div class="d-image">
-                        <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
-                  </div>
-                  <div class="details">
-                        <div class="r-name">
-                              <h3>Room Name</h3>
-                              <p>R 999 pp/pn</p>
-                        </div>
-                        <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
-      
-                        <div class="featuers">
-                              <h3>Features</h3>
-                              <hr>
-                              <div class="fet">
-                                    <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
-                              </div>
-                        </div>
-                  </div>
-            </div>
-            <div class="d-card">
-                        <div class="remove">
-                              <ion-fab-button color="danger">
-                                    <ion-icon name="trash"></ion-icon>
-                              </ion-fab-button>
-                        </div>
-                        <div class="d-image">
-                              <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
-                        </div>
-                        <div class="details">
-                              <div class="r-name">
-                                    <h3>Room Name</h3>
-                                    <p>R 999 pp/pn</p>
-                              </div>
-                              <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
-            
-                              <div class="featuers">
-                                    <h3>Features</h3>
-                                    <hr>
-                                    <div class="fet">
-                                          <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
-                                    </div>
-                              </div>
-                        </div>
-                  </div>
-                  <div class="d-card">
-                              <div class="remove">
-                                    <ion-fab-button color="danger">
-                                          <ion-icon name="trash"></ion-icon>
-                                    </ion-fab-button>
-                              </div>
-                              <div class="d-image">
-                                    <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
-                              </div>
-                              <div class="details">
-                                    <div class="r-name">
-                                          <h3>Room Name</h3>
-                                          <p>R 999 pp/pn</p>
-                                    </div>
-                                    <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
+      <div class="listb">
                   
-                                    <div class="featuers">
-                                          <h3>Features</h3>
-                                          <hr>
-                                          <div class="fet">
-                                                <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
-                                          </div>
-                                    </div>
-                              </div>
-                        </div>
-                        <div class="d-card">
-                                    <div class="remove">
-                                          <ion-fab-button color="danger">
-                                                <ion-icon name="trash"></ion-icon>
-                                          </ion-fab-button>
-                                    </div>
-                                    <div class="d-image">
-                                          <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
-                                    </div>
-                                    <div class="details">
-                                          <div class="r-name">
-                                                <h3>Room Name</h3>
-                                                <p>R 999 pp/pn</p>
-                                          </div>
-                                          <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
-                        
-                                          <div class="featuers">
-                                                <h3>Features</h3>
-                                                <hr>
-                                                <div class="fet">
-                                                      <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
-                                                </div>
-                                          </div>
-                                    </div>
-                              </div>
-                              <div class="d-card">
-                                          <div class="remove">
-                                                <ion-fab-button color="danger">
-                                                      <ion-icon name="trash"></ion-icon>
-                                                </ion-fab-button>
-                                          </div>
-                                          <div class="d-image">
-                                                <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
-                                          </div>
-                                          <div class="details">
-                                                <div class="r-name">
-                                                      <h3>Room Name</h3>
-                                                      <p>R 999 pp/pn</p>
-                                                </div>
-                                                <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
-                              
-                                                <div class="featuers">
-                                                      <h3>Features</h3>
-                                                      <hr>
-                                                      <div class="fet">
-                                                            <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
-                                                      </div>
-                                                </div>
-                                          </div>
-                                    </div>
-                                    <div class="d-card">
-                                                <div class="remove">
-                                                      <ion-fab-button color="danger">
-                                                            <ion-icon name="trash"></ion-icon>
-                                                      </ion-fab-button>
-                                                </div>
-                                                <div class="d-image">
-                                                      <img src="../../assets/kisspng-coworking-virtual-office-company-business-good-job-5ad0443e7ebe59.4126615915235983985192.jpg" alt="">
-                                                </div>
-                                                <div class="details">
-                                                      <div class="r-name">
-                                                            <h3>Room Name</h3>
-                                                            <p>R 999 pp/pn</p>
-                                                      </div>
-                                                      <p>Mollit amet nisi sunt ullamco reprehenderit irure commodo cillum cillum irure tempor fugiat elit. Sit commodo aute occaecat velit cupidatat esse mollit eu. Reprehenderit sint ullamco tempor laboris reprehenderit non dolor anim eu do nulla et exercitation. Labore aute adipisicing occaecat aliquip ullamco deserunt do minim sit do est magna non. Incididunt cillum voluptate id duis. Cupidatat proident aliqua id aute pariatur tempor veniam ullamco laboris id pariatur laboris aliquip Lorem.</p>
-                                    
-                                                      <div class="featuers">
-                                                            <h3>Features</h3>
-                                                            <hr>
-                                                            <div class="fet">
-                                                                  <p>Feature 1</p> <p>Feature 2</p> <p>Another long feature</p> <p>simple feature</p> <p>one feature</p>
-                                                            </div>
-                                                      </div>
-                                                </div>
-                                          </div>
+      </div>
 </div>
 </ion-content>
