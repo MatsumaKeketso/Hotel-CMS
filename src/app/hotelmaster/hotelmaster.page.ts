@@ -46,6 +46,7 @@ export class HotelmasterPage implements OnInit {
  listattractions =[];
  attractionUpload = null;
  isuploading = false;
+ feedback = ''
   constructor(public alertCtrl: AlertController, public loadingCtrl: LoadingController) { }
 
   ngOnInit() {
@@ -224,15 +225,28 @@ export class HotelmasterPage implements OnInit {
       business: this.facilities.business,
     }).then(res=> {
       console.log('Success');
+      this.feedback = 'Saved'
     }).catch(err => {
       console.log('facilities error');
+      this.feedback = 'Error Saving'
     });
   }
   getfacilities(){
     this.db.collection('facilities').get().then(snapshot => {
       snapshot.forEach(doc => {
         console.log('Facilities ', doc.data());
-        this.facilities = doc.data();
+        this.facilities.activities = doc.data().activities;
+        this.facilities.business = doc.data().business;
+        this.facilities.cleaning = doc.data().cleaning;
+        this.facilities.food = doc.data().food;
+        this.facilities.general = doc.data().general;
+        this.facilities.internet = doc.data().internet;
+        this.facilities.languages = doc.data().languages;
+        this.facilities.outdoors = doc.data().outdoors;
+        this.facilities.parking = doc.data().parking;
+        this.facilities.pets = doc.data().pets;
+        this.facilities.reception = doc.data().reception;
+        this.facilities.transport = doc.data().transport;
       })
     })
   }
@@ -279,17 +293,18 @@ export class HotelmasterPage implements OnInit {
     }
   }
   async addAttraction(){
-    this.listattractions = []
+    
     const worker = await this.alertCtrl.create({
       message: 'Working'
     })
     worker.present();
     if (this.attraction.name=='' ||
-    this.attraction.distance==''
+    this.attraction.distance==''||
+    this.attraction.category==''
     ) {
       worker.dismiss();
       const distanceerr = await this.alertCtrl.create({
-        message: "Can't leave distance or name empty.",
+        message: "Can't leave fields empty.",
         cssClass: 'danger'
       })
       distanceerr.present();
@@ -320,6 +335,7 @@ export class HotelmasterPage implements OnInit {
       } else {
         this.db.collection('attractions').doc(this.attraction.name).set(this.attraction).then( async res => {
           this.getAttractions();
+          this.listattractions = []
           const distanceerr = await this.alertCtrl.create({
             message: 'Attraction saved Successfully.'
           })
@@ -331,6 +347,7 @@ export class HotelmasterPage implements OnInit {
             distance: null,
             description: ''
           }
+          this.getAttractions();
           worker.dismiss();
         }).catch( async err => {
           worker.dismiss();
